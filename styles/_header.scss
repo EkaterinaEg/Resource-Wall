@@ -1,0 +1,26 @@
+@import "_constants";
+
+.header {
+  background-color: $background-color;
+}
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.navbar__logo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.logo,
+.logo_text,
+.link_login,
+.link_register {
+  text-decoration: none;
+}
+.navbar__form-container {
+  display: flex;
+  align-items: center;
+}

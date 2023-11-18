@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Users</title>
+
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" />
+    <link rel="stylesheet" href="/vendor/border-box.css" />
+    <link rel="stylesheet" href="/styles/main.css" />
+    <link rel="stylesheet" href="/styles/layout.css" />
+
+    <script src="/vendor/jquery-3.0.0.js"></script>
+    <script defer src="/scripts/users.js"></script>
+  </head>
+
+  <body>
+    <h3>Login</h3>
+    <form class="form" action="/login" method="POST">
+      <div class="form__wrapper">
+        <label class="form__label" for="email">Email address</label>
+        <input
+          class="form__input input_email"
+          type="email"
+          name="email"
+          placeholder="Enter email"
+        />
+        <label class="form__label" for="password">Password</label>
+        <input
+          class="form__input input_password"
+          type="password"
+          name="password"
+          placeholder="Password"
+        />
+        <button type="submit" class="form_button button">Login</button>
+      </div>
+    </form>
+  </body>
+</html>
