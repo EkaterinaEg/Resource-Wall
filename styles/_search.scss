@@ -1,10 +1,17 @@
 @import "_constants";
 
-.form__seacrh {
-  width: 100%;
+.form__search {
+  margin: 150px 30px 30px 30px;
+  text-align: center;
 }
 .search__input {
   width: 80%;
   border: none;
   border-radius: 18px;
+  line-height: 2em;
+  margin-right: 15px;
+  padding: 0 10px;
+  &:hover {
+    box-shadow: 5px 5px 10px 0px $color-primary;
+  }
 }

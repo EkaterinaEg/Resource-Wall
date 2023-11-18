@@ -1,14 +1,19 @@
 <header class="header">
   <nav class="navbar">
-    <div class="navbar__logo">
-      <a class="logo" href="/urls">RW</a>
-      <a class="logo_text" href="/urls">Resource Wall</a>
+    <div class="navbar__menu">
+      <div class="navbar__logo">
+        <a class="logo" href="/urls">RW</a>
+      </div>
+
+      <a class="menu__item add_res" href="">Add resource</a>
     </div>
     <div class="navbar__form-container">
       <form class="nav__form" method="POST" action="/logout">
         <div class="nav__form__wrapper">
           <p class="header__login">Logged in as:</p>
-          <button class="nav__form__button button" type="submit">Logout</button>
+          <button class="nav__form__button button button_colored" type="submit">
+            Logout
+          </button>
         </div>
       </form>
 

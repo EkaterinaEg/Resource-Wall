@@ -19,14 +19,27 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: $background-color;
+  background-color: $background-resource;
+  // background-color: $color;
   padding: 10px;
   border-radius: 18px;
   border: 2px solid #2f4550;
+  opacity: 0.6;
+  &:hover {
+    box-shadow: 5px 5px 10px 0px $color-primary;
+    transform: scale(1.02);
+    opacity: 1;
+  }
 }
 .resource__img {
   max-width: 200px;
 }
 .list__categories {
   list-style: none;
+}
+.resource__info {
+  display: flex;
+  flex-direction: column;
+  align-self: start;
+  margin-top: 10px;
 }

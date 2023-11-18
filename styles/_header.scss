@@ -1,11 +1,20 @@
 @import "_constants";
 
 .header {
-  background-color: $background-color;
+  background-color: $color-primary;
+  color: $color-light;
+  padding: 0 30px;
+  position: fixed;
+  width: 100%;
 }
 .navbar {
   display: flex;
   justify-content: space-between;
+  align-items: center;
+}
+.navbar__menu {
+  display: flex;
+  gap: 20px;
   align-items: center;
 }
 .navbar__logo {
@@ -14,13 +23,25 @@
   align-items: center;
   justify-content: center;
 }
+
 .logo,
 .logo_text,
 .link_login,
-.link_register {
-  text-decoration: none;
+.link_register,
+.navbar__menu > .menu__item {
+  color: $color-light;
+}
+.logo {
+  font-size: 22px;
+  font-weight: bold;
 }
 .navbar__form-container {
   display: flex;
   align-items: center;
+}
+a {
+  text-decoration: none;
+  &:hover {
+    transform: scale(1.2);
+  }
 }

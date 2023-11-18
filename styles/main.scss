@@ -1,13 +1,14 @@
 @import "_constants";
+@import "_buttons";
 
 @import "_resource";
 @import "_header";
 @import "_search";
 
 body {
-  background-color: $background-color-body;
+  // background-color: $background-color-body;
+  background-color: $color;
   background-image: url("https://www.transparenttextures.com/patterns/brick-wall-dark.png");
-  padding: 0 30px;
   color: $color-primary;
   display: flex;
   flex-direction: column;
