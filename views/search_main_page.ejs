@@ -26,18 +26,7 @@
 
   <body>
     <%- include('partials/_header') %>
-    <form class="form__search_main" action="/" method="POST">
-      <!-- <label class="search__label" for="email">Email address</label> -->
-      <input
-        class="search__input input_category_main"
-        type="text"
-        name="category"
-        placeholder="What are you looking for"
-      />
-      <button type="submit" class="search_button button button_light">
-        Search
-      </button>
-    </form>
+    <h3>Founded resources</h3>
     <article class="resource__container">
       <ul class="list_resource">
         <% for (const resource from resources) { %>

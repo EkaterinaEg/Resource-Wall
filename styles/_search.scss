@@ -1,9 +1,18 @@
 @import "_constants";
 
-.form__search {
+.form__search_main {
   margin: 150px 30px 30px 30px;
   text-align: center;
 }
+
+.form__search-page {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  align-items: center;
+  margin: 150px 30px 30px 30px;
+}
+
 .search__input {
   width: 80%;
   border: none;
@@ -14,4 +23,8 @@
   &:hover {
     box-shadow: 5px 5px 10px 0px $color-primary;
   }
+}
+.input_category_search,
+.input_rating_search {
+  width: 40%;
 }
