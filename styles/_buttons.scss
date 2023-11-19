@@ -9,9 +9,12 @@
   }
 }
 
-.button_white {
+.button_light {
   background-color: $color-primary;
   color: $color-light;
+  &:hover {
+    color: $color-primary;
+  }
 }
 .button_colored {
   background-color: $color-light;
