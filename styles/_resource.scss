@@ -29,6 +29,7 @@
     box-shadow: 5px 5px 10px 0px $color-primary;
     transform: scale(1.02);
     opacity: 1;
+    transition-delay: 0.2s;
   }
 }
 .resource__img {
