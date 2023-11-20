@@ -40,13 +40,13 @@ router.get("/", (req, res) => {
 });
 
 // Search main page by category
-router.post("/category", (req, res) => {
+router.post("/", (req, res) => {
   resourceQueries
     .getResourcesbyCategory(req.body.category)
     .then((resources) => {
       const templateVars = { resources };
 
-      res.render("search_from_main", templateVars);
+      res.render("resources", templateVars);
     })
 
     .catch((err) => {
