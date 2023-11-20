@@ -38,11 +38,13 @@ const usersRoutes = require("./routes/users");
 //
 
 const resourceRoutes = require("./routes/resources.js");
-
+// const myResourcesRoutes = require("./routes/my_resources.js");
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
 // Note: Endpoints that return data (eg. JSON) usually start with `/api`
 app.use("/resources", resourceRoutes);
+// app.use("/my_resources", resourceRoutes);
+// app.use("/search", resourceRoutes);
 
 // DELETE LATER
 app.use("/api/users", userApiRoutes);
@@ -57,11 +59,12 @@ app.use("/users", usersRoutes);
 app.get("/", (req, res) => {
   res.render("index");
 });
-
 app.get("/search", (req, res) => {
   res.render("search_page");
 });
-
+app.get("/my_resources", (req, res) => {
+  res.render("my_resources");
+});
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
 });

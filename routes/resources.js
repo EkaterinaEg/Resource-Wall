@@ -78,4 +78,22 @@ router.post("/search", (req, res) => {
     });
 });
 
+router.get("/my_resources", (req, res) => {
+  // if (!res.locals.userId) {
+  //   return res.redirect("/login");
+  // }
+  // const userId = req.session.userId;
+  // resourceQueries
+  //   .getUserResources(userId)
+  //   .then((resources) => {
+  //     const templateVars = { resources };
+
+  res.render("my_resources", templateVars);
+});
+
+// .catch((err) => {
+//   res.status(500).send({ error: err.message });
+// });
+// });
+
 module.exports = router;
