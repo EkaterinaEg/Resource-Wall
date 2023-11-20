@@ -1,0 +1,52 @@
+DROP TABLE IF EXISTS resources CASCADE;
+DROP TABLE IF EXISTS favourite_resources CASCADE;
+DROP TABLE IF EXISTS resource_reviews CASCADE;
+DROP TABLE IF EXISTS resource_categorys CASCADE;
+DROP TABLE IF EXISTS categorys CASCADE;
+
+
+CREATE TABLE resources (
+  id SERIAL PRIMARY KEY NOT NULL,
+  owner_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
+  description TEXT,
+  title VARCHAR(255) NOT NULL,
+  link VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE favourite_resources (
+  id SERIAL PRIMARY KEY NOT NULL,
+  user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
+  resource_id INTEGER REFERENCES resources(id) ON DELETE CASCADE
+
+);
+
+CREATE TABLE resource_reviews (
+  id SERIAL PRIMARY KEY NOT NULL,
+  user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
+  resource_id INTEGER REFERENCES resources(id) ON DELETE CASCADE,
+  comment_id INTEGER REFERENCES resources_comments(id) ON DELETE CASCADE,
+  rating SMALLINT NOT NULL DEFAULT 0,
+  is_like BOOLEAN
+
+);
+
+CREATE TABLE resource_comments (
+  id SERIAL PRIMARY KEY NOT NULL,
+  user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
+  resource_id INTEGER REFERENCES resources(id) ON DELETE CASCADE,
+  comment TEXT
+
+);
+
+CREATE TABLE resource_categorys (
+  id SERIAL PRIMARY KEY NOT NULL,
+  resource_id INTEGER REFERENCES resources(id) ON DELETE CASCADE,
+  category_id INTEGER REFERENCES categorys(id) ON DELETE CASCADE,
+
+);
+
+CREATE TABLE categorys (
+  id SERIAL PRIMARY KEY NOT NULL,
+  resource_id INTEGER REFERENCES resources(id) ON DELETE CASCADE,
+  name VARCHAR(255) NOT NULL,
+);
