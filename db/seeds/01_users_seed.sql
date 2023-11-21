@@ -4,4 +4,4 @@ VALUES ('Harry Shaw', 'HarryS@gmail.com', '$2a$10$FB/BOAVhpuLvpOREQVmvmezD4ED/.J
 '), ('John Smith', 'Jsmith@yahoo.com', '$2a$10$FB/BOAVhpuLvpOREQVmvmezD4ED/.JBIDRh70tGevYzYzQgFId2u.
 '), ('Devin Sanders', 'tristanjacobs@gmail.com', '$2a$10$FB/BOAVhpuLvpOREQVmvmezD4ED/.JBIDRh70tGevYzYzQgFId2u.
 '), ('Ehab Ahmed', 'ehabooos@gmail.com', '$2a$10$FB/BOAVhpuLvpOREQVmvmezD4ED/.JBIDRh70tGevYzYzQgFId2u.
-'):
+');

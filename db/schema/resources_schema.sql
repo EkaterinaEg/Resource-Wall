@@ -3,6 +3,7 @@ DROP TABLE IF EXISTS favourite_resources CASCADE;
 DROP TABLE IF EXISTS resource_ratings CASCADE;
 DROP TABLE IF EXISTS resource_comments CASCADE;
 DROP TABLE IF EXISTS categories CASCADE;
+DROP TABLE IF EXISTS resource_categories CASCADE;
 
 
 CREATE TABLE resources (
@@ -38,8 +39,8 @@ CREATE TABLE categories (
   name VARCHAR(255) NOT NULL
 );
 
-CREATE TABLE resourse_categories (
+CREATE TABLE resource_categories (
   id SERIAL PRIMARY KEY NOT NULL,
   resource_id INTEGER REFERENCES resources(id) ON DELETE CASCADE,
-  category_id INTEGER REFERENCES categories(id) ON DELETE CASCADE,
+  category_id INTEGER REFERENCES categories(id) ON DELETE CASCADE
 );
