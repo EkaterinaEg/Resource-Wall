@@ -27,7 +27,6 @@
   <body>
     <%- include('partials/_header') %>
     <form class="form__search_main" action="/" method="POST">
-      <!-- <label class="search__label" for="email">Email address</label> -->
       <input
         class="search__input input_category_main"
         type="text"
@@ -44,7 +43,7 @@
         <li class="resource__item">
           <h3 class="resource__title"><%= resource.title %></h3>
           <p class="resource__description"><%= resource.description %></p>
-          <p class="resource__url"><%= resource.link %></p>
+          <a href="resource.link" class="resource__url"><%= resource.link %></a>
           <div class="resource__info">
             <div class="info__rating">
               <span
@@ -52,11 +51,12 @@
               >
             </div>
             <div class="info__categories">
-              <% for (const resource of resources) { %>
               <p class="categories_item"><%= resource.category %></p>
-              <% } %>
             </div>
           </div>
+          <button type="submit" class="resource__button button button_dark">
+            Learn more
+          </button>
         </li>
         <% } %>
       </ul>

@@ -3,10 +3,9 @@ const db = require("../connection");
 const getResources = () => {
   return db
     .query(
-      `SELECT resources.*, AVG(resource_ratings.rating) AS rating, categories.name AS category FROM resources JOIN resource_ratings ON resources.id = resource_ratings.resource_id JOIN  resource_categories ON resources.id = resource_categories.resource_id JOIN categories ON resource_categories.category_id= categories.id GROUP BY resources.id categories.name;`
+      "SELECT resources.*, ROUND(AVG(resource_ratings.rating),0) AS rating, categories.name AS category FROM resources JOIN resource_ratings ON resources.id = resource_ratings.resource_id JOIN  resource_categories ON resources.id = resource_categories.resource_id JOIN categories ON resource_categories.category_id= categories.id WHERE resource_categories.resource_id = resources.id GROUP BY resources.id, categories.name;"
     )
     .then((data) => {
-      console.log(data.rows);
       return data.rows;
     })
     .catch((err) => {
@@ -91,6 +90,3 @@ module.exports = {
   getResourcesbyUser,
   getUserResources,
 };
-
-
-SELECT resources.*, AVG(resource_ratings.rating) AS rating FROM resources JOIN resource_ratings ON resources.id = resource_ratings.resource_id GROUP BY resources.id;
