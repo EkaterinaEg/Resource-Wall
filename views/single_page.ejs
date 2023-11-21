@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Home Page</title>
+
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" />
+    <link rel="stylesheet" href="/vendor/border-box.css" />
+    <link rel="stylesheet" href="/styles/main.css" />
+    <link rel="stylesheet" href="/styles/layout.css" />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+      integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+
+    <script src="/vendor/jquery-3.0.0.js"></script>
+    <script defer src="/scripts/app.js"></script>
+  </head>
+
+  <body>
+    <%- include('partials/_header') %>
+    <article class="resource__container">
+      <h2><%= resources.title %></h2>
+      <ul class="recource__list">
+        <li class="list__item">
+          <p><%= resources.description %></p>
+          <form action="" method="POST">
+            <i class="fa-solid fa-heart"></i>
+          </form>
+        </li>
+        <li class="list__item">
+          <a href="resource.link" class="list__url"><%= resources.link %></a>
+        </li>
+        <li class="list__item">
+          <p><i class="fa-solid fa-star"></i><%= resources.rating %></p>
+          <form action="" method="POST">
+            <select name="" id=""></select>
+          </form>
+        </li>
+        <li class="list__item">
+          <p><%= resources.category %></p>
+          <form action="" method="POST">
+            <select name="" id=""></select>
+          </form>
+        </li>
+        <li class="list__item">
+          <ul>
+            <li><%= resources.comment %></li>
+          </ul>
+          <form action="">
+            <textarea name="" id="" cols="30" rows="10"></textarea>
+          </form>
+        </li>
+        <button>Add comment</button>
+      </ul>
+      <button>Save changes</button>
+    </article>
+  </body>
+</html>

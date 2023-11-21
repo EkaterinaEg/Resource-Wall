@@ -1,15 +1,13 @@
 @import "_constants";
 
 .user__details {
-  margin: 150px 30px 30px 30px;
+  margin: 150px 30px 100px 30px;
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 30px;
 }
-.my_resources__container {
-  margin-top: 10px;
-}
+
 .details__photo {
   max-width: 300px;
   border: 2px solid #2f4550;
@@ -30,4 +28,8 @@
 .info__categories {
   display: flex;
   gap: 10px;
+}
+
+.my_resources__container {
+  margin-top: 0;
 }

@@ -113,4 +113,19 @@ router.get("/my_resources", (req, res) => {
     });
 });
 
+router.get("/resources/:id", (req, res) => {
+  const resource_id = req.params.id;
+  resourceQueries
+    .getResourcebyResourceId(resource_id)
+    .then((resources) => {
+      const templateVars = {
+        resources,
+      };
+
+      res.render("single_page", templateVars);
+    })
+    .catch((err) => {
+      res.status(500).send({ error: err.message });
+    });
+});
 module.exports = router;

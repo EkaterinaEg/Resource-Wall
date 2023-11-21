@@ -43,9 +43,15 @@
               <p class="categories_item"><%= resource.category %></p>
             </div>
           </div>
-          <button type="submit" class="resource__button button button_dark">
-            Learn more
-          </button>
+          <form
+            class="form__learn-more"
+            method="GET"
+            action="/resources/<%= resource.id %>"
+          >
+            <button type="submit" class="resource__button button button_dark">
+              Learn more
+            </button>
+          </form>
         </li>
         <% } %>
       </ul>
