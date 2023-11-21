@@ -3,16 +3,36 @@ const db = require("../connection");
 const getResources = () => {
   return db
     .query(
-      "SELECT resources.*, ROUND(AVG(resource_ratings.rating),0) AS rating, categories.name AS category FROM resources JOIN resource_ratings ON resources.id = resource_ratings.resource_id JOIN  resource_categories ON resources.id = resource_categories.resource_id JOIN categories ON resource_categories.category_id= categories.id WHERE resource_categories.resource_id = resources.id GROUP BY resources.id, categories.name;"
+      "SELECT resources.*, ROUND(AVG(resource_ratings.rating),0) AS rating, categories.name AS category FROM resources JOIN resource_categories ON resources.id = resource_categories.resource_id JOIN categories ON resource_categories.category_id = categories.id LEFT JOIN resource_ratings ON resources.id = resource_ratings.resource_id GROUP BY resources.id, categories.name;"
     )
     .then((data) => {
+      console.log(data.rows);
       return data.rows;
     })
     .catch((err) => {
       console.log(err.message);
     });
 };
+// GET all categories for resource
+// const getCategoriesbyResourse = (resource_id) => {
+//   const query1 = getResources();
+//   const query2 = db.query(
+//     `SELECT name FROM categories JOIN resource_categories ON category_id = categories.id WHERE resource_categories.resource_id = resource_id;`
+//   );
 
+//   return getResources()
+//     .then((resouces) => {
+
+//       return db
+//       .query(`SELECT name FROM categories JOIN resource_categories ON category_id = categories.id WHERE resource_categories.resource_id = resources.resource_id;`)
+//       const table1Data = results[0].rows;
+//       const table2Data = results[1].rows;
+//       return { table1Data, table2Data };
+//     })
+//     .catch((err) => {
+//       console.log(err.message);
+//     });
+// };
 // Get resources by search from main page
 const getResourcesbyCategory = (category) => {
   return db
@@ -89,4 +109,5 @@ module.exports = {
   getResourcesbyCategoryRating,
   getResourcesbyUser,
   getUserResources,
+  // getCategoriesbyResourse,
 };
