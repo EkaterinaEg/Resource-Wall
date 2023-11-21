@@ -1,0 +1,30 @@
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar__menu">
+      <div class="navbar__logo">
+        <a class="logo" href="/"><i class="fa-solid fa-trowel-bricks"></i></a>
+        <span class="logo__name">RESOURCE</span>
+        <span class="logo__name">WALL</span>
+      </div>
+      <a class="menu__item add_res" href="/">Home</a>
+      <a class="menu__item add_res" href="/search">Search</a>
+      <a class="menu__item add_res" href="/my_resources">My resources</a>
+      <a class="menu__item add_res" href="/new">Add resource</a>
+    </div>
+    <div class="navbar__form-container">
+      <form class="nav__form" method="POST" action="/logout">
+        <div class="nav__form__wrapper">
+          <p class="header__login">Logged in as:</p>
+          <button class="nav__form__button button button_light" type="submit">
+            Logout
+          </button>
+        </div>
+      </form>
+
+      <div class="login-register__links">
+        <a href="/login" class="link_login">Login</a>
+        <a href="/register" class="link_register">Register</a>
+      </div>
+    </div>
+  </nav>
+</header>

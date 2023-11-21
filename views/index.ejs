@@ -1,24 +1,108 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <title>Home Page</title>
 
-<head>
-  <title>Home Page</title>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <meta charset="UTF-8" >
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" >
+    <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" />
+    <link rel="stylesheet" href="/vendor/border-box.css" />
+    <link rel="stylesheet" href="/styles/main.css" />
+    <link rel="stylesheet" href="/styles/layout.css" />
 
-  <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" />
-  <link rel="stylesheet" href="/vendor/border-box.css" />
-  <link rel="stylesheet" href="/styles/main.css" />
-  <link rel="stylesheet" href="/styles/layout.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+      integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
 
-  <script src="/vendor/jquery-3.0.0.js"></script>
-  <script defer src="/scripts/app.js"></script>
-</head>
+    <script src="/vendor/jquery-3.0.0.js"></script>
+    <script defer src="/scripts/app.js"></script>
+  </head>
 
-<body>
-  <h1>Have fun! 🥔</h1>
-</body>
-
+  <body>
+    <%- include('partials/_header') %>
+    <form class="form__search" action="/login" method="POST">
+      <div class="form__search__wrapper">
+        <!-- <label class="search__label" for="email">Email address</label> -->
+        <input
+          class="search__input input_email"
+          type="email"
+          name="email"
+          placeholder="What are you looking for"
+        />
+        <button type="submit" class="search_button button button_light">
+          Search
+        </button>
+      </div>
+    </form>
+    <article class="resource__container">
+      <ul class="list_resource">
+        <li class="resource__item">
+          <h3 class="resource__title">TRANSPARENT TEXTURES</h3>
+          <img class="resource__img" src="/images/1.png" alt="site page" />
+          <div class="resource__info">
+            <div class="info__rating">
+              <span><i class="fa-solid fa-star"></i></span>rating
+            </div>
+            <div class="info__categories">
+              <p class="categories_item">CSS</p>
+            </div>
+          </div>
+        </li>
+        <li class="resource__item">
+          <h3 class="resource__title">TRANSPARENT TEXTURES</h3>
+          <img class="resource__img" src="/images/1.png" alt="site page" />
+          <div class="resource__info">
+            <div class="info__rating">
+              <span><i class="fa-solid fa-star"></i></span>rating
+            </div>
+            <div class="info__categories">
+              <p class="categories_item">CSS</p>
+            </div>
+          </div>
+        </li>
+        <li class="resource__item">
+          <h3 class="resource__title">TRANSPARENT TEXTURES</h3>
+          <img class="resource__img" src="/images/1.png" alt="site page" />
+          <div class="resource__info">
+            <div class="info__rating">
+              <span><i class="fa-solid fa-star"></i></span>rating
+            </div>
+            <div class="info__categories">
+              <p class="categories_item">CSS</p>
+            </div>
+          </div>
+        </li>
+        <li class="resource__item">
+          <h3 class="resource__title">TRANSPARENT TEXTURES</h3>
+          <img class="resource__img" src="/images/1.png" alt="site page" />
+          <div class="resource__info">
+            <div class="info__rating">
+              <span><i class="fa-solid fa-star"></i></span>rating
+            </div>
+            <div class="info__categories">
+              <p class="categories_item">CSS</p>
+            </div>
+          </div>
+        </li>
+        <li class="resource__item">
+          <h3 class="resource__title">TRANSPARENT TEXTURES</h3>
+          <img class="resource__img" src="/images/1.png" alt="site page" />
+          <div class="resource__info">
+            <div class="info__rating">
+              <span><i class="fa-solid fa-star"></i></span>rating
+            </div>
+            <div class="info__categories">
+              <p class="categories_item">CSS</p>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </article>
+  </body>
 </html>

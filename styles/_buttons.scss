@@ -1,0 +1,26 @@
+.button {
+  padding: 12px;
+  border-radius: 18px;
+  &:hover {
+    background-color: $color-light;
+    font-weight: bold;
+    border: none;
+    box-shadow: 5px 5px 10px 0px $color-primary;
+  }
+}
+
+.button_dark {
+  background-color: $color-primary;
+  color: $color-light;
+  &:hover {
+    color: $color-primary;
+  }
+}
+.button_light {
+  background-color: $color-light;
+  color: $color-primary;
+}
+.resource__button {
+  width: 40%;
+  align-self: center;
+}
