@@ -84,13 +84,36 @@ const getUserResources = (user_id) => {
     });
 };
 
+const addResource = function(resource) {
+  let queryParams = [];
+  for (const val in resource) {
+    queryParams.push(resource[val]);
+  }
+  let query = 
+  `INSERT INTO resources (user_id, description, title, link)
+  VALUES ($1, $2, $3, $4), RETURNING *;`
+  
+  return pool
+    .query(query, queryParams)
+    .then(res => {
+      return res.rows;
+    })
+    .catch(err => {
+      console.log(err.message)
+    });
+}
+
+
+
+
 module.exports = {
   getResources,
   getResourcesbyCategory,
   getResourcesbyCategoryRating,
   getResourcesbyUser,
   getUserResources,
+  addResource,
 };
 
 
-SELECT resources.*, AVG(resource_ratings.rating) AS rating FROM resources JOIN resource_ratings ON resources.id = resource_ratings.resource_id GROUP BY resources.id;
+// SELECT resources.*, AVG(resource_ratings.rating) AS rating FROM resources JOIN resource_ratings ON resources.id = resource_ratings.resource_id GROUP BY resources.id;
