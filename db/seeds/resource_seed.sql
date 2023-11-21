@@ -63,17 +63,17 @@ INSERT INTO resource_comments (user_id,  resource_id, comment)
 
 
 INSERT INTO  categories (name)
- VALUES ('Design'),
- ('CSS'),
- ('Databases'),
- ('Express'),
- ('Sass'),
- ('Diagram Tools'),
- ('API'),
- ('Project Management'),
- ('Communication Tool'),
- ('Placeholder'),
- ('HTML');
+ VALUES ('design'),
+ ('css'),
+ ('databases'),
+ ('express'),
+ ('sass'),
+ ('diagram Tools'),
+ ('api'),
+ ('project management'),
+ ('communication tool'),
+ ('placeholder'),
+ ('html');
 
 
 INSERT INTO resource_categories (resource_id, category_id)
