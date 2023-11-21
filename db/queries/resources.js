@@ -33,7 +33,7 @@ const getResourcesbyCategoryRating = (options) => {
   let queryString = `SELECT resources.*, ROUND(AVG(resource_ratings.rating),0) AS rating, STRING_AGG(DISTINCT categories.name, ', ') AS category FROM resources LEFT JOIN resource_categories ON resources.id = resource_categories.resource_id LEFT JOIN categories ON resource_categories.category_id = categories.id LEFT JOIN resource_ratings ON resources.id = resource_ratings.resource_id `;
 
   if (options.category) {
-    queryParams.push(`%${options.category}%`);
+    queryParams.push(`%${options.category.toLowerCase()}%`);
     queryString += `WHERE categories.name LIKE $${queryParams.length} `;
   }
 
@@ -41,7 +41,7 @@ const getResourcesbyCategoryRating = (options) => {
   GROUP BY resources.id
   `;
   if (options.rating) {
-    queryParams.push(Number(options.rating));
+    queryParams.push(Number(options.rating.toLowerCase()));
     queryString += `HAVING ROUND(AVG(resource_ratings.rating),0) > $${queryParams.length};`;
   }
   return db
@@ -57,7 +57,7 @@ const getResourcesbyCategoryRating = (options) => {
 const getResourcesbyUser = (user_id) => {
   return db
     .query(
-      `SELECT resources.*, ROUND(AVG(resource_ratings.rating),0) AS rating, STRING_AGG(DISTINCT categories.name, ', ') AS category FROM resources LEFT JOIN resource_categories ON resources.id = resource_categories.resource_id LEFT JOIN categories ON resource_categories.category_id = categories.id LEFT JOIN resource_ratings ON resources.id = resource_ratings.resource_id WHERE resources.user_id = ${user_id} GROUP BY resources.id;`
+      `SELECT resources.*, ROUND(AVG(resource_ratings.rating),0) AS rating, STRING_AGG(DISTINCT categories.name, ', ') AS category, users.* FROM resources FULL OUTER JOIN users ON users.id = resources.user_id LEFT JOIN resource_categories ON resources.id = resource_categories.resource_id LEFT JOIN categories ON resource_categories.category_id = categories.id LEFT JOIN resource_ratings ON resources.id = resource_ratings.resource_id WHERE resources.user_id = ${user_id} GROUP BY users.id, resources.id;`
     )
     .then((data) => {
       return data.rows;

@@ -53,21 +53,21 @@ router.get("/", (req, res) => {
 });
 
 // Search main page by category
-router.post("/", (req, res) => {
-  // const category = [req.body.category.toLowerCase()];
-  // console.log(req.body);
-  resourceQueries
-    .getResourcesbyCategoryRating(req.body)
-    .then((resources) => {
-      const templateVars = { resources };
+// router.post("/", (req, res) => {
+//   // const category = [req.body.category.toLowerCase()];
+//   // console.log(req.body);
+//   resourceQueries
+//     .getResourcesbyCategoryRating(req.body)
+//     .then((resources) => {
+//       const templateVars = { resources };
 
-      res.render("resources", templateVars);
-    })
+//       res.render("resources", templateVars);
+//     })
 
-    .catch((err) => {
-      res.status(500).send({ error: err.message });
-    });
-});
+//     .catch((err) => {
+//       res.status(500).send({ error: err.message });
+//     });
+// });
 // GET search page from nav menu
 router.get("/search", (req, res) => {
   // if (!res.locals.userId) {
@@ -80,7 +80,6 @@ router.post("/search", (req, res) => {
   // if (!res.locals.userId) {
   //   return res.redirect("/login");
   // }
-
   resourceQueries
     .getResourcesbyCategoryRating(req.body)
     .then((resources) => {
@@ -99,13 +98,12 @@ router.get("/my_resources", (req, res) => {
   //   return res.redirect("/login");
   // }
   // const userId = req.session.userId;
-  const userId = 2;
+  const userId = 4;
   resourceQueries
     .getResourcesbyUser(userId)
     .then((resources) => {
-      console.log("resources", resources);
       const templateVars = {
-        resources: resources,
+        resources,
       };
 
       res.render("my_resources", templateVars);

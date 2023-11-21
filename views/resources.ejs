@@ -26,17 +26,6 @@
 
   <body>
     <%- include('partials/_header') %>
-    <form class="form__search_main" action="/" method="POST">
-      <input
-        class="search__input input_category_main"
-        type="text"
-        name="category"
-        placeholder="What are you looking for"
-      />
-      <button type="submit" class="search_button button button_dark">
-        Search
-      </button>
-    </form>
     <article class="resource__container">
       <ul class="list_resource">
         <% for (const resource of resources) { %>

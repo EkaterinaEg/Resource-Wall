@@ -30,9 +30,9 @@
       <img class="details__photo" src="images/3.jpg" alt="user photo" />
       <div class="details__wrapper">
         <ul class="details__list">
-          <li class="list__name">name: <%= resource.title %></li>
-          <li class="list__email">email: email</li>
-          <li class="list_password">password: password</li>
+          <li class="list__name">name: <%= resources[0].name %></li>
+          <li class="list__email">email: <%= resources[0].email %></li>
+          <li class="list_password">password: ***</li>
         </ul>
         <form method="GET" action="/user/edit">
           <button class="details_button button button_dark">
@@ -41,7 +41,7 @@
         </form>
       </div>
     </article>
-    <article class="resource__container">
+    <article class="resource__container my_resources__container">
       <ul class="list_resource">
         <% for (const resource of resources) { %>
         <li class="resource__item">
