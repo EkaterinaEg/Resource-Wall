@@ -25,16 +25,29 @@
   </head>
 
   <body>
-    <article class="user__details">
-      <i class="fa-solid fa-user-large"></i>
-      <p class="user__details_name"><%= users.name %></p>
-    </article>
     <%- include('partials/_header') %>
+    <article class="user__details">
+      <img class="details__photo" src="images/3.jpg" alt="user photo" />
+      <div class="details__wrapper">
+        <ul class="details__list">
+          <li class="list__name">name: <%= resource.title %></li>
+          <li class="list__email">email: email</li>
+          <li class="list_password">password: password</li>
+        </ul>
+        <form method="GET" action="/user/edit">
+          <button class="details_button button button_dark">
+            Edit personal info
+          </button>
+        </form>
+      </div>
+    </article>
     <article class="resource__container">
       <ul class="list_resource">
-        <% for (const resource from resources) { %>
+        <% for (const resource of resources) { %>
         <li class="resource__item">
           <h3 class="resource__title"><%= resource.title %></h3>
+          <p class="resource__description"><%= resource.description %></p>
+          <a href="resource.link" class="resource__url"><%= resource.link %></a>
           <div class="resource__info">
             <div class="info__rating">
               <span
@@ -42,9 +55,12 @@
               >
             </div>
             <div class="info__categories">
-              <p class="categories_item"><%= resource.categories %></p>
+              <p class="categories_item"><%= resource.category %></p>
             </div>
           </div>
+          <button type="submit" class="resource__button button button_dark">
+            Learn more
+          </button>
         </li>
         <% } %>
       </ul>
