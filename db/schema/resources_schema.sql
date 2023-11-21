@@ -1,13 +1,13 @@
 DROP TABLE IF EXISTS resources CASCADE;
 DROP TABLE IF EXISTS favourite_resources CASCADE;
-DROP TABLE IF EXISTS resource_reviews CASCADE;
-DROP TABLE IF EXISTS resource_categorys CASCADE;
-DROP TABLE IF EXISTS categorys CASCADE;
+DROP TABLE IF EXISTS resource_ratings CASCADE;
+DROP TABLE IF EXISTS resource_comments CASCADE;
+DROP TABLE IF EXISTS categories CASCADE;
 
 
 CREATE TABLE resources (
   id SERIAL PRIMARY KEY NOT NULL,
-  owner_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
+  user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
   description TEXT,
   title VARCHAR(255) NOT NULL,
   link VARCHAR(255) NOT NULL
@@ -17,17 +17,13 @@ CREATE TABLE favourite_resources (
   id SERIAL PRIMARY KEY NOT NULL,
   user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
   resource_id INTEGER REFERENCES resources(id) ON DELETE CASCADE
-
 );
 
-CREATE TABLE resource_reviews (
+CREATE TABLE resource_ratings (
   id SERIAL PRIMARY KEY NOT NULL,
   user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
   resource_id INTEGER REFERENCES resources(id) ON DELETE CASCADE,
-  comment_id INTEGER REFERENCES resources_comments(id) ON DELETE CASCADE,
-  rating SMALLINT NOT NULL DEFAULT 0,
-  is_like BOOLEAN
-
+  rating SMALLINT NOT NULL DEFAULT 0
 );
 
 CREATE TABLE resource_comments (
@@ -35,18 +31,15 @@ CREATE TABLE resource_comments (
   user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
   resource_id INTEGER REFERENCES resources(id) ON DELETE CASCADE,
   comment TEXT
-
 );
 
-CREATE TABLE resource_categorys (
+CREATE TABLE categories (
   id SERIAL PRIMARY KEY NOT NULL,
-  resource_id INTEGER REFERENCES resources(id) ON DELETE CASCADE,
-  category_id INTEGER REFERENCES categorys(id) ON DELETE CASCADE,
-
+  name VARCHAR(255) NOT NULL
 );
 
-CREATE TABLE categorys (
+CREATE TABLE resourse_categories (
   id SERIAL PRIMARY KEY NOT NULL,
   resource_id INTEGER REFERENCES resources(id) ON DELETE CASCADE,
-  name VARCHAR(255) NOT NULL,
+  category_id INTEGER REFERENCES categories(id) ON DELETE CASCADE,
 );
