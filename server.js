@@ -59,12 +59,18 @@ app.use("/users", usersRoutes);
 app.get("/", (req, res) => {
   res.render("index");
 });
+// DELETE LATER
 app.get("/search", (req, res) => {
   res.render("search_page");
 });
 app.get("/my_resources", (req, res) => {
   res.render("my_resources copy");
 });
+
+app.get("/user/edit", (req, res) => {
+  res.render("userInfoEdit");
+});
+
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
 });
