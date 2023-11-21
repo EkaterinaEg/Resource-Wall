@@ -29,7 +29,20 @@ router.get("/", (req, res) => {
   resourceQueries
     .getResources()
     .then((resources) => {
-      const templateVars = { resources };
+      // let result = {};
+      // for (const res of resources) {
+      //   if (result[res.id]) {
+      //     //if it exists
+      //     result[res.id].push(res.category);
+      //   } else {
+      //     result[res.id] = [res.category];
+      //   }
+      // }
+      //console.log("RD TEsting ", result);
+      // const categories = getCategoriesbyResourse(resources.id);
+      const templateVars = {
+        resources,
+      };
 
       res.render("resources", templateVars);
     })
