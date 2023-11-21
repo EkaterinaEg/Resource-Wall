@@ -40,9 +40,11 @@
     </form>
     <article class="resource__container">
       <ul class="list_resource">
-        <% for (const resource from resources) { %>
+        <% for (const resource of resources) { %>
         <li class="resource__item">
           <h3 class="resource__title"><%= resource.title %></h3>
+          <p class="resource__description"><%= resource.description %></p>
+          <p class="resource__url"><%= resource.link %></p>
           <div class="resource__info">
             <div class="info__rating">
               <span
@@ -50,7 +52,9 @@
               >
             </div>
             <div class="info__categories">
-              <p class="categories_item"><%= resource.categories %></p>
+              <% for (const resource of resources) { %>
+              <p class="categories_item"><%= resource.category %></p>
+              <% } %>
             </div>
           </div>
         </li>

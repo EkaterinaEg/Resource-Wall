@@ -32,9 +32,9 @@ app.use(express.static("public"));
 // Note: Feel free to replace the example routes below with your own
 
 // DELETE LATER
-const userApiRoutes = require("./routes/users-api");
-const widgetApiRoutes = require("./routes/widgets-api");
-const usersRoutes = require("./routes/users");
+// const userApiRoutes = require("./routes/users-api");
+// const widgetApiRoutes = require("./routes/widgets-api");
+// const usersRoutes = require("./routes/users");
 //
 
 const resourceRoutes = require("./routes/resources.js");
@@ -47,29 +47,29 @@ app.use("/resources", resourceRoutes);
 // app.use("/search", resourceRoutes);
 
 // DELETE LATER
-app.use("/api/users", userApiRoutes);
-app.use("/api/widgets", widgetApiRoutes);
-app.use("/users", usersRoutes);
+// app.use("/api/users", userApiRoutes);
+// app.use("/api/widgets", widgetApiRoutes);
+// app.use("/users", usersRoutes);
 // Note: mount other resources here, using the same pattern above
 
 // Home page
 // Warning: avoid creating more routes in this file!
 // Separate them into separate routes files (see above).
 
-app.get("/", (req, res) => {
-  res.render("index");
-});
+// app.get("/", (req, res) => {
+//   res.render("index");
+// });
 // DELETE LATER
-app.get("/search", (req, res) => {
-  res.render("search_page");
-});
-app.get("/my_resources", (req, res) => {
-  res.render("my_resources copy");
-});
+// app.get("/search", (req, res) => {
+//   res.render("search_page");
+// });
+// app.get("/my_resources", (req, res) => {
+//   res.render("my_resources copy");
+// });
 
-app.get("/user/edit", (req, res) => {
-  res.render("userInfoEdit");
-});
+// app.get("/user/edit", (req, res) => {
+//   res.render("userInfoEdit");
+// });
 
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
