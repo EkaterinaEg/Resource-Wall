@@ -9,14 +9,14 @@
   }
 }
 
-.button_light {
+.button_dark {
   background-color: $color-primary;
   color: $color-light;
   &:hover {
     color: $color-primary;
   }
 }
-.button_colored {
+.button_light {
   background-color: $color-light;
   color: $color-primary;
 }

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Home Page</title>
+
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" />
+    <link rel="stylesheet" href="/vendor/border-box.css" />
+    <link rel="stylesheet" href="/styles/main.css" />
+    <link rel="stylesheet" href="/styles/layout.css" />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+      integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+
+    <script src="/vendor/jquery-3.0.0.js"></script>
+    <script defer src="/scripts/app.js"></script>
+  </head>
+
+  <body>
+    <article class="user__details">
+      <img class="details_photo" src="images/2.jpg" alt="user photo" />
+      <div class="details__wrapper">
+        <ul class="details__list">
+          <li class="list__name">name: name</li>
+          <li class="list__email">email: email</li>
+          <li class="list_password">password: password</li>
+        </ul>
+        <form method="GET" action="/">
+          <button class="details_button button button_dark">
+            Edit personal info
+          </button>
+        </form>
+      </div>
+    </article>
+    <%- include('partials/_header') %>
+    <article class="resource__container">
+      <ul class="list_resource">
+        <li class="resource__item">
+          <h3 class="resource__title">
+            The super fast color palletes generator
+          </h3>
+          <p class="resource__description">
+            Create the perfect pallete or get inspired by thousands of beautiful
+            color schemes
+          </p>
+          <p class="resource__url">https://coolors.co/</p>
+          <div class="resource__info">
+            <div class="info__rating">
+              <span><i class="fa-solid fa-star"></i>Rating</span>
+            </div>
+            <div class="info__categories">
+              <p class="categories_item">CSS</p>
+              <p class="categories_item">HTML</p>
+            </div>
+          </div>
+        </li>
+        <li class="resource__item">
+          <h3 class="resource__title">
+            The super fast color palletes generator
+          </h3>
+          <p class="resource__description">
+            Create the perfect pallete or get inspired by thousands of beautiful
+            color schemes
+          </p>
+          <p class="resource__url">https://coolors.co/</p>
+          <div class="resource__info">
+            <div class="info__rating">
+              <span><i class="fa-solid fa-star"></i>Rating</span>
+            </div>
+            <div class="info__categories">
+              <p class="categories_item">CSS</p>
+              <p class="categories_item">HTML</p>
+            </div>
+          </div>
+        </li>
+        <li class="resource__item">
+          <h3 class="resource__title">
+            The super fast color palletes generator
+          </h3>
+          <p class="resource__description">
+            Create the perfect pallete or get inspired by thousands of beautiful
+            color schemes
+          </p>
+          <p class="resource__url">https://coolors.co/</p>
+          <div class="resource__info">
+            <div class="info__rating">
+              <span><i class="fa-solid fa-star"></i>Rating</span>
+            </div>
+            <div class="info__categories">
+              <p class="categories_item">CSS</p>
+              <p class="categories_item">HTML</p>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </article>
+  </body>
+</html>

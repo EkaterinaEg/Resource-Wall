@@ -63,7 +63,7 @@ app.get("/search", (req, res) => {
   res.render("search_page");
 });
 app.get("/my_resources", (req, res) => {
-  res.render("my_resources");
+  res.render("my_resources copy");
 });
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
