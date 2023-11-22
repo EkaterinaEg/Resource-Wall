@@ -103,11 +103,33 @@ const getUserResources = (user_id) => {
     });
 };
 
+// adding a new resource
+const addResource = function(resource, user_id) {
+  let queryParams = [];
+  queryParams.push(user_id)
+  for (const val in resource) {
+    queryParams.push(resource[val]);
+  }
+  let query = 
+  `INSERT INTO resources (user_id, description, title, link)
+  VALUES ($1, $2, $3, $4), RETURNING *;`
+  
+  return pool
+    .query(query, queryParams)
+    .then(res => {
+      return res.rows;
+    })
+    .catch(err => {
+      console.log(err.message)
+    });
+}
+
 module.exports = {
   getResources,
   getResourcesbyCategory,
   getResourcesbyCategoryRating,
   getResourcesbyUser,
   getUserResources,
+  addResource,
   // getCategoriesbyResourse,
 };

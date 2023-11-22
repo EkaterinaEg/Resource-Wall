@@ -96,4 +96,30 @@ router.get("/my_resources", (req, res) => {
 // });
 // });
 
+
+// GET /new
+router.get('/new', (req, res) => {
+res.render("new_resource");
+});
+
+
+// POST /new
+router.post("/new", (req, res) => {
+  const userId = req.session.userId;
+  if (!userId) {
+    return res.send({ error: "error" });
+  }
+
+  const newProperty = req.body;
+  newProperty.user_id = user_Id;
+  database
+    .addresource()
+    .then((property) => {
+      res.send(property);
+    })
+    .catch((e) => {
+      console.error(e);
+      res.send(e);
+    });
+});
 module.exports = router;

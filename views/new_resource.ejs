@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Home Page</title>
+
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" />
+    <link rel="stylesheet" href="/vendor/border-box.css" />
+    <link rel="stylesheet" href="/styles/main.css" />
+    <link rel="stylesheet" href="/styles/layout.css" />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+      integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+
+    <script src="/vendor/jquery-3.0.0.js"></script>
+    <script defer src="/scripts/app.js"></script>
+  </head>
+
+  <body>
+    <%- include('partials/_header') %>
+    <form
+      class="form__search-page search-page_category"
+      action="/new"
+      method="POST"
+    >
+      <!-- <label class="search__label" for="category">Resourse category</label> -->
+      <input
+        class="search__input input_category_search"
+        type="text"
+        name="link"
+        placeholder="Resource Link"
+      />
+      <input
+        class="search__input input_rating_search"
+        type="text"
+        name="title"
+        placeholder="Resource Title"
+      />
+      <input
+        class="search__input input_category_search"
+        type="text"
+        name="description"
+        placeholder="Resource Description"
+      />
+      <label for="pet-select">Choose a Category:</label>
+
+<select name="category" class="search__input input_category_search">
+  <option value="">--Please choose an option--</option>
+  <option value="dog">Dog</option>
+  <option value="cat">Cat</option>
+  <option value="hamster">Hamster</option>
+  <option value="parrot">Parrot</option>
+  <option value="spider">Spider</option>
+  <option value="goldfish">Goldfish</option>
+</select>
+      <button type="submit" class="search_button button button_dark">
+        Add New Resource
+      </button>
+    </form>
+  </body>
+</html>
