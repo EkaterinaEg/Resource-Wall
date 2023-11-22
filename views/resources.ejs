@@ -36,11 +36,15 @@
           <div class="resource__info">
             <div class="info__rating">
               <span
-                ><i class="fa-solid fa-star"></i><%= resource.rating %></span
+                ><i class="fa-solid fa-star"></i>Current rating: <%=
+                resource.rating %></span
               >
             </div>
             <div class="info__categories">
-              <p class="categories_item"><%= resource.category %></p>
+              <span class="categories_item"
+                ><i class="fa-solid fa-magnifying-glass"></i>Key words: <%=
+                resource.category %></span
+              >
             </div>
           </div>
           <form

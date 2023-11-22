@@ -26,41 +26,91 @@
 
   <body>
     <%- include('partials/_header') %>
-    <article class="resource__container">
-      <h2><%= resources.title %></h2>
-      <ul class="recource__list">
+    <article class="single-page__container">
+      <h2 class="single-page__title"><%= resources.title %></h2>
+      <ul class="single-page__list">
         <li class="list__item">
-          <p><%= resources.description %></p>
-          <form action="" method="POST">
-            <i class="fa-solid fa-heart"></i>
-          </form>
+          <h3><%= resources.description %></h3>
         </li>
         <li class="list__item">
           <a href="resource.link" class="list__url"><%= resources.link %></a>
         </li>
-        <li class="list__item">
-          <p><i class="fa-solid fa-star"></i><%= resources.rating %></p>
+        <li>
+          <div class="info__author">
+            <p class="author">Created by <%= resources.name %></p>
+          </div>
+        </li>
+        <li class="list__item item__action action_rating">
+          <h3>
+            <i class="fa-solid fa-star"></i>Current rating: <%= resources.rating
+            %> from 5
+          </h3>
           <form action="" method="POST">
-            <select name="" id=""></select>
+            <label for="rating-select">Rate me</label>
+            <select name="rating" id="rating">
+              <option value="">--Please choose--</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+            </select>
           </form>
         </li>
-        <li class="list__item">
-          <p><%= resources.category %></p>
+
+        <li class="list__item item__action action_category">
+          <h3>
+            <i class="fa-solid fa-magnifying-glass"></i>Key words: <%=
+            resources.category %>
+          </h3>
           <form action="" method="POST">
-            <select name="" id=""></select>
+            <label for="rating-select">Add key words</label>
+            <select name="rating" id="rating">
+              <option value="">--Please choose--</option>
+              <option value="1">css</option>
+              <option value="2">databases</option>
+              <option value="3">express</option>
+              <option value="4">sass</option>
+              <option value="5">api</option>
+              <option value="5">project management</option>
+              <option value="5">communication tool</option>
+              <option value="5">placeholder</option>
+              <option value="5">html</option>
+              <option value="5">other</option>
+            </select>
           </form>
         </li>
-        <li class="list__item">
-          <ul>
-            <li><%= resources.comment %></li>
+        <li class="list__item item__action action_comment">
+          <ul class="action_comment__list">
+            <h3><i class="fa-solid fa-comment"></i>Comments</h3>
+            <form action="/POST" class="form_comment">
+              <textarea
+                name="comment"
+                id="comment"
+                cols="40"
+                rows="2"
+                placeholder="What do you think?"
+              ></textarea>
+              <button class="comment__button button button_dark">
+                Add comment
+              </button>
+            </form>
+            <ul class="comments__list">
+              <h4 class="comments__list__title">Comments:</h4>
+              <li class="comments__list__item">
+                <span class="comments__list__item_author"
+                  ><i class="fa-regular fa-face-smile"></i><%=
+                  resources.comment_creator_name %> said:</span
+                >
+                <span class="comments__list__item_text"
+                  ><%= resources.comment %></span
+                >
+              </li>
+            </ul>
           </ul>
-          <form action="">
-            <textarea name="" id="" cols="30" rows="10"></textarea>
-          </form>
         </li>
-        <button>Add comment</button>
       </ul>
-      <button>Save changes</button>
+      <button class="comment__button button button_dark">Save changes</button>
     </article>
   </body>
 </html>
