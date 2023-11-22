@@ -33,7 +33,9 @@
           <h3><%= resources.description %></h3>
         </li>
         <li class="list__item">
-          <a href="resource.link" class="list__url"><%= resources.link %></a>
+          <a href="<%= resources.link %>" class="list__url"
+            ><%= resources.link %></a
+          >
         </li>
         <li>
           <div class="info__author">
@@ -43,10 +45,14 @@
         <li class="list__item item__action action_rating">
           <h3>
             <i class="fa-solid fa-star"></i>Current rating: <%= resources.rating
-            %> from 5
+            || 0 %> from 5
           </h3>
-          <form action="" method="POST">
-            <label for="rating-select">Rate me</label>
+          <form
+            action="/resources/<%= resource_id %>"
+            method="POST"
+            class="form_raiting"
+          >
+            <label for="rating">Rate me</label>
             <select name="rating" id="rating">
               <option value="">--Please choose--</option>
               <option value="1">1</option>
@@ -55,6 +61,22 @@
               <option value="4">4</option>
               <option value="5">5</option>
             </select>
+            <button type="submit" class="rate__button button button_dark">
+              Rate
+            </button>
+          </form>
+        </li>
+        <li class="list__item item__action action_like">
+          <h3><i class="fa-solid fa-thumbs-up"></i>Like</h3>
+          <form action="/resources/<%= resource_id %>" method="POST">
+            <label>Like me</label>
+            <button
+              type="submit"
+              class="comment__button button button_dark"
+              action="/like/<%= resource_id %>"
+            >
+              Like
+            </button>
           </form>
         </li>
 
@@ -63,27 +85,38 @@
             <i class="fa-solid fa-magnifying-glass"></i>Key words: <%=
             resources.category %>
           </h3>
-          <form action="" method="POST">
-            <label for="rating-select">Add key words</label>
-            <select name="rating" id="rating">
+          <form action="/resources/<%= resource_id %>" method="POST">
+            <label for="category">Add key words</label>
+            <select name="category" id="category">
               <option value="">--Please choose--</option>
-              <option value="1">css</option>
-              <option value="2">databases</option>
-              <option value="3">express</option>
-              <option value="4">sass</option>
-              <option value="5">api</option>
-              <option value="5">project management</option>
-              <option value="5">communication tool</option>
-              <option value="5">placeholder</option>
-              <option value="5">html</option>
-              <option value="5">other</option>
+              <option value="css">css</option>
+              <option value="databases">databases</option>
+              <option value="express">express</option>
+              <option value="sass">sass</option>
+              <option value="api">api</option>
+              <option value="project management">project management</option>
+              <option value="communication tool">communication tool</option>
+              <option value="placeholder">placeholder</option>
+              <option value="html">html</option>
+              <option value="other">other</option>
             </select>
+            <button
+              type="submit"
+              class="rate__button button button_dark"
+              action="/category/<%= resource_id %>"
+            >
+              Add key words
+            </button>
           </form>
         </li>
         <li class="list__item item__action action_comment">
-          <ul class="action_comment__list">
+          <div class="action_comment__list">
             <h3><i class="fa-solid fa-comment"></i>Comments</h3>
-            <form action="/POST" class="form_comment">
+            <form
+              method="/POST"
+              action="/resources/<%= resource_id %>"
+              class="form_comment"
+            >
               <textarea
                 name="comment"
                 id="comment"
@@ -91,26 +124,29 @@
                 rows="2"
                 placeholder="What do you think?"
               ></textarea>
-              <button class="comment__button button button_dark">
+              <button
+                type="submit"
+                class="rate__button button button_dark"
+                action="/comments/<%= resource_id %>"
+              >
                 Add comment
               </button>
             </form>
-            <ul class="comments__list">
-              <h4 class="comments__list__title">Comments:</h4>
-              <li class="comments__list__item">
-                <span class="comments__list__item_author"
-                  ><i class="fa-regular fa-face-smile"></i><%=
-                  resources.comment_creator_name %> said:</span
-                >
-                <span class="comments__list__item_text"
-                  ><%= resources.comment %></span
-                >
-              </li>
-            </ul>
+          </div>
+          <ul class="comments__list">
+            <h4 class="comments__list__title">Comments:</h4>
+            <li class="comments__list__item">
+              <span class="comments__list__item_author"
+                ><i class="fa-regular fa-face-smile"></i><%=
+                resources.comment_creator_name %> said:</span
+              >
+              <span class="comments__list__item_text"
+                ><%= resources.comment %></span
+              >
+            </li>
           </ul>
         </li>
       </ul>
-      <button class="comment__button button button_dark">Save changes</button>
     </article>
   </body>
 </html>

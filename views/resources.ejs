@@ -32,13 +32,15 @@
         <li class="resource__item">
           <h3 class="resource__title"><%= resource.title %></h3>
           <p class="resource__description"><%= resource.description %></p>
-          <a href="resource.link" class="resource__url"><%= resource.link %></a>
+          <a href="<%= resource.link %>" class="resource__url"
+            ><%= resource.link %></a
+          >
           <div class="resource__info">
             <div class="info__rating">
               <span
                 ><i class="fa-solid fa-star"></i>Current rating: <%=
-                resource.rating %></span
-              >
+                resource.rating || 0 %>
+              </span>
             </div>
             <div class="info__categories">
               <span class="categories_item"

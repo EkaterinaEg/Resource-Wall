@@ -75,7 +75,7 @@ router.get("/search", (req, res) => {
   // }
   res.render("search_page");
 });
-
+// Post request for search page
 router.post("/search", (req, res) => {
   // if (!res.locals.userId) {
   //   return res.redirect("/login");
@@ -113,13 +113,15 @@ router.get("/my_resources", (req, res) => {
     });
 });
 
-router.get("/resources/:id", (req, res) => {
-  const resource_id = req.params.id;
+//GET request for single resource page
+router.get("/resources/:resource_id", (req, res) => {
+  const resource_id = req.params.resource_id;
   resourceQueries
     .getResourcebyResourceId(resource_id)
     .then((resources) => {
       const templateVars = {
-        resources,
+        resources: resources,
+        resource_id: resource_id,
       };
 
       res.render("single_page", templateVars);
@@ -128,4 +130,77 @@ router.get("/resources/:id", (req, res) => {
       res.status(500).send({ error: err.message });
     });
 });
+
+//POST request for changing rating
+router.post("/resources/:resource_id", (req, res) => {
+  const resource_id = req.params.resource_id;
+
+  // console.log("resourceID ", resource_id);
+  const rating = req.body.rating;
+  const user_id = 1;
+  // console.log("req.body: ", req.body);
+
+  resourceQueries
+    .updateRating(user_id, resource_id, rating)
+    .then((resources) => {
+      console.log(resources);
+      const templateVars = {
+        resources: resources,
+        resource_id: resource_id,
+      };
+      res.redirect(`/`);
+    })
+    .catch((err) => {
+      res.status(500).send({ error: err.message });
+    });
+});
+
+//POST request for adding category
+router.post("/resources/:resource_id", (req, res) => {
+  const resource_id = req.params.resource_id;
+
+  // console.log("resourceID ", resource_id);
+  const rating = req.body.rating;
+  const user_id = 1;
+  // console.log("req.body: ", req.body);
+
+  resourceQueries
+    .updateRating(user_id, resource_id, rating)
+    .then((resources) => {
+      console.log(resources);
+      const templateVars = {
+        resources: resources,
+        resource_id: resource_id,
+      };
+      res.redirect(`/`);
+    })
+    .catch((err) => {
+      res.status(500).send({ error: err.message });
+    });
+});
+
+// router.post("/resources/:resource_id", (req, res) => {
+//   const resource_id = req.params.resource_id;
+
+//   const { rating, category, comment, like } = req.body;
+//   // const rating = req.body.rating;
+//   // const category = req.params.category;
+//   // const user_id = res.session.user_id;
+//   const user_id = 1;
+//   console.log("req.body: ", req.body);
+
+//   resourceQueries
+//     .updateSingleResource(user_id, resource_id, rating, comment, like)
+//     .then((resources) => {
+//       console.log(resources);
+//       const templateVars = {
+//         resources,
+//       };
+
+//       res.render("resources", templateVars);
+//     })
+//     .catch((err) => {
+//       res.status(500).send({ error: err.message });
+//     });
+// });
 module.exports = router;

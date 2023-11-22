@@ -47,7 +47,9 @@
         <li class="resource__item">
           <h3 class="resource__title"><%= resource.title %></h3>
           <p class="resource__description"><%= resource.description %></p>
-          <a href="resource.link" class="resource__url"><%= resource.link %></a>
+          <a href="<%= resource.link %>" class="resource__url"
+            ><%= resource.link %></a
+          >
           <div class="resource__info">
             <div class="info__rating">
               <span
@@ -65,7 +67,7 @@
           <form
             class="form__learn-more"
             method="GET"
-            action="/resources/<%= resource.id %>"
+            action="/resources/<%= resource_id %>"
           >
             <button type="submit" class="resource__button button button_dark">
               Learn more
