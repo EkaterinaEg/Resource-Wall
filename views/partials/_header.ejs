@@ -12,19 +12,20 @@
       <a class="menu__item add_res" href="/new">Add resource</a>
     </div>
     <div class="navbar__form-container">
-      <form class="nav__form" method="POST" action="/logout">
-        <div class="nav__form__wrapper">
-          <p class="header__login">Logged in as:</p>
-          <button class="nav__form__button button button_light" type="submit">
-            Logout
-          </button>
+      <% if(user){ %>
+      <form method="POST" action="/logout">
+        <div class="d-flex">
+          <p class="header__login">Logged in as: <b><%= user.email %>!</b></p>
+          <button class="btn border border-dark" type="submit">Logout</button>
         </div>
       </form>
 
-      <div class="login-register__links">
-        <a href="/login" class="link_login">Login</a>
-        <a href="/register" class="link_register">Register</a>
+      <% } else{ %>
+      <div class="d-flex g-3">
+        <a href="/login" class="text-light mr-3">Login</a>
+        <a href="/register" class="text-light">Register</a>
       </div>
+      <% } %>
     </div>
   </nav>
 </header>
