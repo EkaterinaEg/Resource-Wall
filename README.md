@@ -36,7 +36,10 @@ Allow learners to save learning resources like tutorials, blogs and videos in a 
 - Express
 - Node 10.x or above
 - NPM 5.x or above
-- PG 6.x
+
+### Database
+
+- PostgreSQL and pg (with promises)
 
 ## Getting Started
 
