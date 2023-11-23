@@ -15,34 +15,32 @@ const getUserById = (user_id) => {
     });
 };
 
-const updateUsers = (user_id, options) => {
-  // const queryParams = [user_id, name, email, password];
+const updateUsers = (name, email, password, user_id) => {
   const queryParams = [];
+  const valueForRequest = [];
 
   let queryString = `UPDATE users SET `;
-  console.log(options.name);
-  console.log(options.email);
-  if (options.name) {
-    queryParams.push(`%${options.name}%`);
-    queryString += `name = $${queryParams.length} `;
+
+  if (name) {
+    queryParams.push(`${name}`);
+    valueForRequest.push(`name = $${queryParams.length}`);
   }
-  if (options.email) {
-    queryParams.push(`%${options.email}%`);
-    queryString += `email = $${queryParams.length} `;
+  if (email) {
+    queryParams.push(`${email}`);
+    valueForRequest.push(`email = $${queryParams.length}`);
   }
-  if (options.password) {
-    queryParams.push(`%${options.password}%`);
-    queryString += `password = $${queryParams.length} `;
+  if (password) {
+    queryParams.push(`${password}`);
+    valueForRequest.push(`password = $${queryParams.length}`);
   }
+  queryString += valueForRequest.join(", ");
   queryString += `
   WHERE users.id = ${user_id} RETURNING * ;
   `;
-  console.log(queryString);
-  console.log(queryParams);
+
   return db
     .query(queryString, queryParams)
     .then((data) => {
-      console.log("query:", data.rows[0]);
       return data.rows;
     })
     .catch((err) => {

@@ -8,6 +8,7 @@
 const express = require("express");
 const router = express.Router();
 const userQueries = require("../db/queries/users");
+const bcrypt = require("bcryptjs");
 
 router.get("/users/:user_id", (req, res) => {
   const user_id = req.params.user_id;
@@ -29,21 +30,14 @@ router.get("/users/:user_id", (req, res) => {
 });
 
 router.post("/users/:user_id", (req, res) => {
-  const user_id = req.params.user_id;
+  const user_id = req.session.user_id;
   const { name, email, password } = req.body;
+  const hashedPassword = bcrypt.hashSync(password, 10);
 
-  console.log(user_id);
-  console.log(name, email, password);
   userQueries
-    .updateUsers(user_id, req.body)
+    .updateUsers(name, email, hashedPassword, user_id)
     .then((users) => {
-      console.log("users", users);
-      const templateVars = {
-        users: users,
-        user_id: users.id,
-      };
-
-      res.render("users", templateVars);
+      res.redirect(`/my_resources`);
     })
     .catch((err) => {
       res.status(500).send({ error: err.message });

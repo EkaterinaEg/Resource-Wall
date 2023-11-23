@@ -221,25 +221,25 @@ const isFavourite = (resource_id) => {
 };
 
 // adding a new resource
-const addResource = function(resource, user_id) {
+const addResource = function (resource, user_id) {
   let queryParams = [];
-  queryParams.push(user_id)
+  queryParams.push(user_id);
   for (const val in resource) {
     queryParams.push(resource[val]);
   }
-  let query = 
-  `INSERT INTO resources (user_id, link, title, description)
-  VALUES ($1, $2, $3, $4);`
-  
+  let query = `INSERT INTO resources (user_id, link, title, description)
+  VALUES ($1, $2, $3, $4);`;
+  console.log(query);
+  console.log(queryParams);
   return db
     .query(query, queryParams)
     .then(() => {
       return console.log("inserted new resource");
     })
-    .catch(err => {
-      console.log(err.message)
+    .catch((err) => {
+      console.log(err.message);
     });
-}
+};
 
 module.exports = {
   getResources,

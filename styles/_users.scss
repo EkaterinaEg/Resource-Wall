@@ -1,0 +1,11 @@
+@import "_constants";
+
+.form_user {
+  border: none;
+  border-radius: 18px;
+  line-height: 2em;
+  padding: 0 10px;
+  &:hover {
+    box-shadow: 5px 5px 10px 0px $color-primary;
+  }
+}
