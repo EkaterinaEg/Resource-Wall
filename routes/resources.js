@@ -29,17 +29,6 @@ router.get("/", (req, res) => {
   resourceQueries
     .getResources()
     .then((resources) => {
-      // let result = {};
-      // for (const res of resources) {
-      //   if (result[res.id]) {
-      //     //if it exists
-      //     result[res.id].push(res.category);
-      //   } else {
-      //     result[res.id] = [res.category];
-      //   }
-      // }
-      //console.log("RD TEsting ", result);
-      // const categories = getCategoriesbyResourse(resources.id);
       const templateVars = {
         resources,
       };
@@ -54,16 +43,13 @@ router.get("/", (req, res) => {
 
 // GET search page from nav menu
 router.get("/search", (req, res) => {
-  // if (!res.locals.userId) {
-  //   return res.redirect("/login");
-  // }
+
   res.render("search_page");
 });
+
 // Post request for search page
 router.post("/search", (req, res) => {
-  // if (!res.locals.userId) {
-  //   return res.redirect("/login");
-  // }
+
   resourceQueries
     .getResourcesbyCategoryRating(req.body)
     .then((resources) => {
@@ -78,11 +64,12 @@ router.post("/search", (req, res) => {
 });
 
 router.get("/my_resources", (req, res) => {
-  // if (!res.locals.userId) {
-  //   return res.redirect("/login");
-  // }
-  // const userId = req.session.userId;
-  const user_id = 2;
+  const user_id = req.session.user_id;
+
+  if (!user_id) {
+    return res.send({ error: "Sorry you must be logged in to add a resource" });
+  }
+  
   resourceQueries
     .getResourcesbyUser(user_id)
     .then((resources) => {
@@ -101,6 +88,10 @@ router.get("/my_resources", (req, res) => {
 //GET request for single resource page
 router.get("/resources/:resource_id", (req, res) => {
   const resource_id = req.params.resource_id;
+  const user_id = req.session.user_id;
+  if (!user_id) {
+    return res.send({ error: "Sorry you must be logged in to add a resource" });
+  }
 
   Promise.all([
     resourceQueries.getCommentsByResourseId(resource_id),
@@ -119,32 +110,18 @@ router.get("/resources/:resource_id", (req, res) => {
       res.status(500).send({ error: err.message });
     });
 });
-//   resourceQueries
-//     .getCommentsByResourseId(resource_id)
-//     .then((comment) => {
-//       return getResourcebyResourceId(resource_id);
-//     })
-//     .then((resources) => {
-//       console.log(resources);
-//       const templateVars = {
-//         resources: resources,
-//         resource_id: resource_id,
-//       };
-
-//       res.render("single_page", templateVars);
-//     })
-//     .catch((err) => {
-//       res.status(500).send({ error: err.message });
-//     });
-// });
 
 //POST request for changing rating
 router.post("/rating/:resource_id", (req, res) => {
   const resource_id = req.params.resource_id;
+  const user_id = req.session.user_id;
+
+  if (!user_id) {
+    return res.send({ error: "Sorry you must be logged in to add a resource" });
+  }
 
   // console.log("resourceID ", resource_id);
   const rating = req.body.rating;
-  const user_id = 1;
   // console.log("req.body: ", req.body);
 
   resourceQueries
@@ -164,7 +141,11 @@ router.post("/rating/:resource_id", (req, res) => {
 //POST request for adding category
 router.post("/category/:resource_id", (req, res) => {
   const resource_id = req.params.resource_id;
-  const user_id = 1;
+  const user_id = req.session.user_id;
+  if (!user_id) {
+    return res.send({ error: "Sorry you must be logged in to add a resource" });
+  }
+
   return resourceQueries
     .findCategoryID(req.body.category)
     .then((category_id) => {
@@ -177,10 +158,14 @@ router.post("/category/:resource_id", (req, res) => {
       res.status(500).send({ error: err.message });
     });
 });
+
 //POST request for adding like(to favourite)
 router.post("/like/:resource_id", (req, res) => {
   const resource_id = req.params.resource_id;
-  const user_id = 2;
+  const user_id = req.session.user_id;
+  if (!user_id) {
+    return res.send({ error: "Sorry you must be logged in to add a resource" });
+  }
   return resourceQueries
     .addLike(user_id, resource_id)
     .then((data) => {
@@ -190,11 +175,15 @@ router.post("/like/:resource_id", (req, res) => {
       res.status(500).send({ error: err.message });
     });
 });
+
 //POST request for adding comment
 router.post("/comment/:resource_id", (req, res) => {
   const resource_id = req.params.resource_id;
-  const user_id = 1;
-
+  const user_id = req.session.user_id;
+  if (!user_id) {
+    return res.send({ error: "Sorry you must be logged in to add a resource" });
+  }
+  
   return resourceQueries
     .addComments(user_id, resource_id, req.body.comment)
     .then((comments) => {
@@ -215,10 +204,8 @@ router.get('/login/:id', (req ,res) => {
 
 // GET /new
 router.get('/new', (req, res) => {
-  console.log(req.session.user_id)
-  const user_id1 = res.locals.userId;
   const user_id = req.session.user_id;
-  if (!user_id1) {
+  if (!user_id) {
     return res.send({ error: "Sorry you must be logged in to add a resource" });
   }
   res.render("new_resource");
@@ -227,17 +214,15 @@ router.get('/new', (req, res) => {
 
 // POST /new
 router.post("/new", (req, res) => {
-  const user_id1 = res.locals.userId;
   const user_id = req.session.user_id;
-  if (!user_id1) {
+  if (!user_id) {
     return res.send({ error: "Sorry you must be logged in to add a resource" });
   }
 console.log(req.body)
 console.log('1:', user_id)
-console.log('2:', user_id1)
   const newResource = req.body;
     resourceQueries
-    .addResource(newResource, user_id1)
+    .addResource(newResource, user_id)
     .then(() => {
       res.redirect('/search');
     })

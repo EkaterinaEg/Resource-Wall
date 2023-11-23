@@ -254,7 +254,6 @@ module.exports = {
   addCategory,
   addLike,
   getCommentsByResourseId,
-  getUserResources,
   addResource,
   // getCategoriesbyResourse,
 };
