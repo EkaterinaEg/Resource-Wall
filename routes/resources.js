@@ -96,30 +96,43 @@ router.get("/my_resources", (req, res) => {
 // });
 // });
 
+router.get('/login/:id', (req ,res) => {
+  req.session.user_id = req.params.id
+  res.redirect('/')
+});
 
 // GET /new
 router.get('/new', (req, res) => {
-res.render("new_resource");
+  console.log(req.session.user_id)
+  const user_id1 = res.locals.userId;
+  const user_id = req.session.user_id;
+  if (!user_id1) {
+    return res.send({ error: "Sorry you must be logged in to add a resource" });
+  }
+  res.render("new_resource");
 });
 
 
 // POST /new
 router.post("/new", (req, res) => {
-  const userId = req.session.userId;
-  if (!userId) {
-    return res.send({ error: "error" });
+  const user_id1 = res.locals.userId;
+  const user_id = req.session.user_id;
+  if (!user_id1) {
+    return res.send({ error: "Sorry you must be logged in to add a resource" });
   }
-
-  const newProperty = req.body;
-  newProperty.user_id = user_Id;
-  database
-    .addresource()
-    .then((property) => {
-      res.send(property);
+console.log(req.body)
+console.log('1:', user_id)
+console.log('2:', user_id1)
+  const newResource = req.body;
+    resourceQueries
+    .addResource(newResource, user_id1)
+    .then(() => {
+      res.redirect('/search');
     })
     .catch((e) => {
       console.error(e);
       res.send(e);
     });
 });
+
 module.exports = router;

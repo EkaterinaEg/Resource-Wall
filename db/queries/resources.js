@@ -111,13 +111,13 @@ const addResource = function(resource, user_id) {
     queryParams.push(resource[val]);
   }
   let query = 
-  `INSERT INTO resources (user_id, description, title, link)
-  VALUES ($1, $2, $3, $4), RETURNING *;`
+  `INSERT INTO resources (user_id, link, title, description)
+  VALUES ($1, $2, $3, $4);`
   
-  return pool
+  return db
     .query(query, queryParams)
-    .then(res => {
-      return res.rows;
+    .then(() => {
+      return console.log("inserted new resource");
     })
     .catch(err => {
       console.log(err.message)
