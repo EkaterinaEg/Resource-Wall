@@ -38,10 +38,12 @@ app.use(express.static("public"));
 //
 
 const resourceRoutes = require("./routes/resources.js");
+//const userRoutes = require('.routes/users.js')
 // const myResourcesRoutes = require("./routes/my_resources.js");
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
 // Note: Endpoints that return data (eg. JSON) usually start with `/api`
+//app.use('/user', userRoutes)
 app.use("/", resourceRoutes);
 // app.use("/my_resources", resourceRoutes);
 // app.use("/search", resourceRoutes);
@@ -60,9 +62,12 @@ app.use("/", resourceRoutes);
 //   res.render("index");
 // });
 // DELETE LATER
-app.get("/search", (req, res) => {
-  res.render("search_page");
-});
+// app.get("/search", (req, res) => {
+//   res.render("search_page");
+// });
+// app.get("/register", (req, res) => {
+//   res.render("register");
+// });
 // app.get("/my_resources", (req, res) => {
 //   res.render("my_resources copy");
 // });
