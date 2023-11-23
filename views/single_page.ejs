@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Home Page</title>
+
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" />
+    <link rel="stylesheet" href="/vendor/border-box.css" />
+    <link rel="stylesheet" href="/styles/main.css" />
+    <link rel="stylesheet" href="/styles/layout.css" />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+      integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+
+    <script src="/vendor/jquery-3.0.0.js"></script>
+    <script defer src="/scripts/app.js"></script>
+  </head>
+
+  <body>
+    <%- include('partials/_header') %>
+    <article class="single-page__container">
+      <h2 class="single-page__title"><%= resources.title %></h2>
+      <ul class="single-page__list">
+        <li class="list__item">
+          <h3><%= resources.description %></h3>
+        </li>
+        <li class="list__item">
+          <a href="<%= resources.link %>" class="list__url"
+            ><%= resources.link %></a
+          >
+        </li>
+        <li>
+          <div class="info__author">
+            <p class="author">Created by <%= resources.name %></p>
+          </div>
+        </li>
+        <li class="list__item item__action action_rating">
+          <h3>
+            <i class="fa-solid fa-star"></i>Current rating: <%= resources.rating
+            || 0 %> from 5
+          </h3>
+          <form
+            action="/rating/<%= resource_id %>"
+            method="POST"
+            class="form_raiting"
+          >
+            <label for="rating">Rate me</label>
+            <select name="rating" id="rating">
+              <option value="">--Please choose--</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+            </select>
+            <button type="submit" class="rate__button button button_dark">
+              Rate
+            </button>
+          </form>
+        </li>
+        <li class="list__item item__action action_like">
+          <h3><i class="fa-solid fa-thumbs-up"></i>Like</h3>
+          <form action="/like/<%= resource_id %>" method="POST">
+            <label>Like me</label>
+            <button type="submit" class="comment__button button button_dark">
+              Like
+            </button>
+          </form>
+        </li>
+
+        <li class="list__item item__action action_category">
+          <h3>
+            <i class="fa-solid fa-magnifying-glass"></i>Key words: <%=
+            resources.category %>
+          </h3>
+          <form action="/category/<%= resource_id %>" method="POST">
+            <label for="category">Add key words</label>
+            <select name="category" id="category">
+              <option value="">--Please choose--</option>
+              <option value="css">css</option>
+              <option value="databases">databases</option>
+              <option value="express">express</option>
+              <option value="sass">sass</option>
+              <option value="api">api</option>
+              <option value="project management">project management</option>
+              <option value="communication tool">communication tool</option>
+              <option value="placeholder">placeholder</option>
+              <option value="html">html</option>
+              <option value="other">other</option>
+            </select>
+            <button
+              type="submit"
+              class="rate__button button button_dark"
+              action="/category/<%= resource_id %>"
+            >
+              Add key words
+            </button>
+          </form>
+        </li>
+        <li class="list__item item__action action_comment">
+          <div class="action_comment__list">
+            <h3><i class="fa-solid fa-comment"></i>Comments</h3>
+            <form
+              method="POST"
+              action="/comment/<%= resource_id %>"
+              class="form_comment"
+            >
+              <textarea
+                name="comment"
+                id="comment"
+                cols="40"
+                rows="2"
+                placeholder="What do you think?"
+              ></textarea>
+              <button type="submit" class="rate__button button button_dark">
+                Add comment
+              </button>
+            </form>
+          </div>
+          <ul class="comments__list">
+            <h4 class="comments__list__title">Comments:</h4>
+            <% for (const comment of comments) { %>
+            <li class="comments__list__item">
+              <span class="comments__list__item_author"
+                ><i class="fa-regular fa-face-smile"></i> <%=
+                comment.comment_creator_name %></span
+              >
+              <span class="comments__list__item_text"
+                ><%= comment.comment %></span
+              >
+            </li>
+            <% } %>
+          </ul>
+        </li>
+      </ul>
+    </article>
+  </body>
+</html>

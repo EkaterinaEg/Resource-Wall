@@ -26,37 +26,38 @@
 
   <body>
     <%- include('partials/_header') %>
-    <form class="form__search_main" action="/" method="POST">
-      <input
-        class="search__input input_category_main"
-        type="text"
-        name="category"
-        placeholder="What are you looking for"
-      />
-      <button type="submit" class="search_button button button_dark">
-        Search
-      </button>
-    </form>
     <article class="resource__container">
       <ul class="list_resource">
         <% for (const resource of resources) { %>
         <li class="resource__item">
           <h3 class="resource__title"><%= resource.title %></h3>
           <p class="resource__description"><%= resource.description %></p>
-          <a href="resource.link" class="resource__url"><%= resource.link %></a>
+          <a href="<%= resource.link %>" class="resource__url"
+            ><%= resource.link %></a
+          >
           <div class="resource__info">
             <div class="info__rating">
               <span
-                ><i class="fa-solid fa-star"></i><%= resource.rating %></span
-              >
+                ><i class="fa-solid fa-star"></i>Current rating: <%=
+                resource.rating || 0 %>
+              </span>
             </div>
             <div class="info__categories">
-              <p class="categories_item"><%= resources.category %></p>
+              <span class="categories_item"
+                ><i class="fa-solid fa-magnifying-glass"></i>Key words: <%=
+                resource.category %></span
+              >
             </div>
           </div>
-          <button type="submit" class="resource__button button button_dark">
-            Learn more
-          </button>
+          <form
+            class="form__learn-more"
+            method="GET"
+            action="/resources/<%= resource.id %>"
+          >
+            <button type="submit" class="resource__button button button_dark">
+              Learn more
+            </button>
+          </form>
         </li>
         <% } %>
       </ul>

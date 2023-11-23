@@ -1,14 +1,14 @@
 @import "_constants";
 
 .user__details {
-  margin: 150px 30px 30px 30px;
+  margin: 150px 30px 100px 30px;
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 30px;
 }
 
-.details_photo {
+.details__photo {
   max-width: 300px;
   border: 2px solid #2f4550;
   border-radius: 18px;
@@ -21,11 +21,29 @@
   flex-direction: column;
   align-items: start;
   gap: 10px;
-  font-size: 20px;
+
   list-style: none;
   padding-left: 10px;
 }
 .info__categories {
   display: flex;
   gap: 10px;
+}
+
+.my_resources__container {
+  margin-top: 0;
+}
+.details__table {
+  border-collapse: separate;
+  border-spacing: 50px 0;
+}
+.details__form {
+  text-align: right;
+}
+.details__item {
+  font-size: 20px;
+  text-align: left;
+}
+td {
+  padding: 10px 0;
 }

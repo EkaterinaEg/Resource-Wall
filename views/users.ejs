@@ -1,26 +1,103 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <title>Users</title>
 
-<head>
-  <title>Users</title>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <meta charset="UTF-8" >
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" >
+    <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" />
+    <link rel="stylesheet" href="/vendor/border-box.css" />
+    <link rel="stylesheet" href="/styles/main.css" />
+    <link rel="stylesheet" href="/styles/layout.css" />
 
-  <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" />
-  <link rel="stylesheet" href="/vendor/border-box.css" />
-  <link rel="stylesheet" href="/styles/main.css" />
-  <link rel="stylesheet" href="/styles/layout.css" />
+    <script src="/vendor/jquery-3.0.0.js"></script>
+    <script defer src="/scripts/users.js"></script>
+  </head>
 
-  <script src="/vendor/jquery-3.0.0.js"></script>
-  <script defer src="/scripts/users.js"></script>
-</head>
-
-<body>
-  <h1>Users</h1>
-  <button id="fetch-users">Fetch Users via AJAX</button>
-  <ul id="users"></ul>
-</body>
-
+  <body>
+    <%- include('partials/_header') %>
+    <article class="user__details">
+      <div class="details__wrapper">
+        <!-- <ul class="details__list">
+          <li class="list__name">name: <%= users.name %></li>
+          <li class="list__email">email: <%= users.email %></li>
+          <li class="list_password">password: ***</li>
+        </ul>
+        <form method="POST" action="/users/<%= user_id %>">
+          <button class="details_button button button_dark">
+            Edit personal info
+          </button>
+        </form> -->
+        <table class="details__table">
+          <tr>
+            <th></th>
+            <th></th>
+          </tr>
+          <tr>
+            <td class="details__item item_name">name: <%= users.name %></td>
+            <td>
+              <form
+                class="details__form"
+                action="/name/<%= user_id %>"
+                method="POST"
+              >
+                <input
+                  type="text"
+                  name="name"
+                  placeholder="new name"
+                  class="form_user input_user-name"
+                >
+                </input>
+              </form>
+            </td>
+          </tr>
+          <tr>
+            <td class="details__item item_email">email: <%= users.email %></td>
+            <td>
+              <form
+                class="details__form"
+                action="/email/<%= user_id %>"
+                method="POST"
+              >
+              <input
+              type="text"
+              name="email"
+              placeholder="new email"
+              class="form_user input_user-email"
+            >
+            </input>
+              </form>
+            </td>
+          </tr>
+          <tr>
+            <td class="details__item item_password">
+              password: <%= users.password %>
+            </td>
+            <td>
+              <form
+                class="details__form"
+                action="/password/<%= user_id %>"
+                method="POST"
+              >
+              <input
+              type="text"
+              name="password"
+              placeholder="new password"
+              class="form_user input_user-password"
+            >
+            </input>
+              </form>
+            </td>
+          </tr>
+        </table>
+        <form method="POST" action="/users/<%= user_id %>">
+          <button class="details_button button button_dark">
+            Save personal info
+          </button>
+        </form>
+      </div>
+    </article>
+  </body>
 </html>

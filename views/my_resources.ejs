@@ -25,26 +25,117 @@
   </head>
 
   <body>
-    <article class="user__details">
-      <i class="fa-solid fa-user-large"></i>
-      <p class="user__details_name"><%= users.name %></p>
-    </article>
     <%- include('partials/_header') %>
-    <article class="resource__container">
+    <article class="user__details">
+      <img class="details__photo" src="images/3.jpg" alt="user photo" />
+      <div class="details__wrapper">
+        <ul class="details__list">
+          <li class="list__name">name: <%= resources[0].name %></li>
+          <li class="list__email">email: <%= resources[0].email %></li>
+          <li class="list_password">password: ***</li>
+        </ul>
+        <form method="GET" action="/users/<%= user_id %>">
+          <button class="details_button button button_dark">
+            Edit personal info
+          </button>
+        </form>
+        <!-- <table class="details__table">
+          <tr>
+            <th></th>
+            <th></th>
+          </tr>
+          <tr>
+            <td class="details__item item_name">
+              name: <%= resources[0].name %>
+            </td>
+            <td>
+              <form
+                class="details__form"
+                action="/name/<%= user_id %>"
+                method="POST"
+              >
+                <button
+                  type="submit"
+                  class="comment__button button button_light"
+                >
+                  Update
+                </button>
+              </form>
+            </td>
+          </tr>
+          <tr>
+            <td class="details__item item_email">
+              email: <%= resources[0].email %>
+            </td>
+            <td>
+              <form
+                class="details__form"
+                action="/email/<%= user_id %>"
+                method="POST"
+              >
+                <button
+                  type="submit"
+                  class="comment__button button button_light"
+                >
+                  Update
+                </button>
+              </form>
+            </td>
+          </tr>
+          <tr>
+            <td class="details__item item_password">password: ***</td>
+            <td>
+              <form
+                class="details__form"
+                action="/password/<%= user_id %>"
+                method="POST"
+              >
+                <button
+                  type="submit"
+                  class="comment__button button button_light"
+                >
+                  Update
+                </button>
+              </form>
+            </td>
+          </tr>
+        </table> -->
+      </div>
+    </article>
+    <article></article>
+
+    <article class="resource__container my_resources__container">
       <ul class="list_resource">
-        <% for (const resource from resources) { %>
+        <% for (const resource of resources) { %>
         <li class="resource__item">
           <h3 class="resource__title"><%= resource.title %></h3>
+          <p class="resource__description"><%= resource.description %></p>
+          <a href="<%= resource.link %>" class="resource__url"
+            ><%= resource.link %></a
+          >
           <div class="resource__info">
             <div class="info__rating">
               <span
-                ><i class="fa-solid fa-star"></i><%= resource.rating %></span
+                ><i class="fa-solid fa-star"></i>Current rating: <%=
+                resource.rating %></span
               >
             </div>
             <div class="info__categories">
-              <p class="categories_item"><%= resource.categories %></p>
+              <span class="categories_item"
+                ><i class="fa-solid fa-magnifying-glass"></i>Key words: <%=
+                resource.category %></span
+              >
             </div>
           </div>
+          <form
+            class="form__learn-more"
+            method="GET"
+            action="/resources/<%= resource.id %>"
+          >
+            <button type="submit" class="resource__button button button_dark">
+              Learn more
+            </button>
+          </form>
         </li>
         <% } %>
       </ul>

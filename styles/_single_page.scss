@@ -1,0 +1,58 @@
+@import "_constants";
+
+.single-page__container {
+  margin: 120px 30px 100px 30px;
+  text-align: center;
+}
+.single-page__list {
+  list-style: none;
+  padding-left: 0px;
+}
+.single-page__list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+}
+.item__action {
+  width: 40%;
+  padding: 15px 0px;
+  border: 2px solid $background-color;
+  border-radius: 18px;
+}
+select,
+textarea {
+  background-color: $color-light;
+  border-radius: 18px;
+  border: 2px solid $background-color;
+  padding: 5px;
+  color: $color-primary;
+}
+.form_comment {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+.action_comment__list {
+  text-align: center;
+  padding-left: 0px;
+}
+.comments__list {
+  margin-top: 40px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+.comments__list__item {
+  display: flex;
+  gap: 10px;
+}
+.comments__list__title {
+  text-align: start;
+}
+.comments__list__item_author {
+  font-weight: bold;
+  margin-right: 15px;
+}
