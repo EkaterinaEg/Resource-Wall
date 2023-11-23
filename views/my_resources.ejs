@@ -34,13 +34,76 @@
           <li class="list__email">email: <%= resources[0].email %></li>
           <li class="list_password">password: ***</li>
         </ul>
-        <form method="GET" action="/user/edit">
+        <form method="GET" action="/users/<%= user_id %>">
           <button class="details_button button button_dark">
             Edit personal info
           </button>
         </form>
+        <!-- <table class="details__table">
+          <tr>
+            <th></th>
+            <th></th>
+          </tr>
+          <tr>
+            <td class="details__item item_name">
+              name: <%= resources[0].name %>
+            </td>
+            <td>
+              <form
+                class="details__form"
+                action="/name/<%= user_id %>"
+                method="POST"
+              >
+                <button
+                  type="submit"
+                  class="comment__button button button_light"
+                >
+                  Update
+                </button>
+              </form>
+            </td>
+          </tr>
+          <tr>
+            <td class="details__item item_email">
+              email: <%= resources[0].email %>
+            </td>
+            <td>
+              <form
+                class="details__form"
+                action="/email/<%= user_id %>"
+                method="POST"
+              >
+                <button
+                  type="submit"
+                  class="comment__button button button_light"
+                >
+                  Update
+                </button>
+              </form>
+            </td>
+          </tr>
+          <tr>
+            <td class="details__item item_password">password: ***</td>
+            <td>
+              <form
+                class="details__form"
+                action="/password/<%= user_id %>"
+                method="POST"
+              >
+                <button
+                  type="submit"
+                  class="comment__button button button_light"
+                >
+                  Update
+                </button>
+              </form>
+            </td>
+          </tr>
+        </table> -->
       </div>
     </article>
+    <article></article>
+
     <article class="resource__container my_resources__container">
       <ul class="list_resource">
         <% for (const resource of resources) { %>

@@ -6,7 +6,6 @@ const getResources = () => {
       "SELECT resources.*, ROUND(AVG(resource_ratings.rating),0) AS rating, STRING_AGG(DISTINCT categories.name, ', ') AS category FROM resources LEFT JOIN resource_categories ON resources.id = resource_categories.resource_id LEFT JOIN categories ON resource_categories.category_id = categories.id LEFT JOIN resource_ratings ON resources.id = resource_ratings.resource_id GROUP BY resources.id;"
     )
     .then((data) => {
-      // console.log(data.rows);
       return data.rows;
     })
     .catch((err) => {
@@ -235,8 +234,3 @@ module.exports = {
   addLike,
   getCommentsByResourseId,
 };
-// SELECT resource_comments.*, users.name AS comment_creator_name
-//     FROM resource_comments
-//     LEFT JOIN users ON resource_comments.user_id = users.id
-//     WHERE resource_comments.resource_id = 2
-//     GROUP BY resource_comments.resource_id, resource_comments.id;

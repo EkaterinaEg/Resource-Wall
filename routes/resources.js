@@ -82,12 +82,13 @@ router.get("/my_resources", (req, res) => {
   //   return res.redirect("/login");
   // }
   // const userId = req.session.userId;
-  const userId = 2;
+  const user_id = 2;
   resourceQueries
-    .getResourcesbyUser(userId)
+    .getResourcesbyUser(user_id)
     .then((resources) => {
       const templateVars = {
         resources,
+        user_id: user_id,
       };
 
       res.render("my_resources", templateVars);

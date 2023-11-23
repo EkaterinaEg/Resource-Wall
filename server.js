@@ -38,11 +38,13 @@ app.use(express.static("public"));
 //
 
 const resourceRoutes = require("./routes/resources.js");
+const userRoutes = require("./routes/users.js");
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
 // Note: Endpoints that return data (eg. JSON) usually start with `/api`
 app.use("/", resourceRoutes);
+app.use("/", userRoutes);
 // app.use("/my_resources", resourceRoutes);
 // app.use("/search", resourceRoutes);
 
