@@ -11,21 +11,6 @@
       <a class="menu__item add_res" href="/my_resources">My resources</a>
       <a class="menu__item add_res" href="/new">Add resource</a>
     </div>
-    <div class="navbar__form-container">
-      <% if(user){ %>
-      <form method="POST" action="/logout">
-        <div class="d-flex">
-          <p class="header__login">Logged in as: <b><%= user.email %>!</b></p>
-          <button class="btn border border-dark" type="submit">Logout</button>
-        </div>
-      </form>
-
-      <% } else{ %>
-      <div class="d-flex g-3">
-        <a href="/login" class="text-light mr-3">Login</a>
-        <a href="/register" class="text-light">Register</a>
-      </div>
-      <% } %>
-    </div>
+    <div class="navbar__form-container"></div>
   </nav>
 </header>

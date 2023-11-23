@@ -110,7 +110,7 @@ router.get("/resources/:resource_id", (req, res) => {
     .then(([comments, resources]) => {
       const templateVars = {
         resources: resources,
-        comments: comments, // You can pass comments to the template here
+        comments: comments,
         resource_id: resource_id,
       };
 
