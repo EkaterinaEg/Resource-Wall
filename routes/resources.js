@@ -86,7 +86,6 @@ router.get("/my_resources", (req, res) => {
   resourceQueries
     .getResourcesbyUser(userId)
     .then((resources) => {
-      console.log(resources);
       const templateVars = {
         resources,
       };
@@ -107,8 +106,6 @@ router.get("/resources/:resource_id", (req, res) => {
     resourceQueries.getResourcebyResourceId(resource_id),
   ])
     .then(([comments, resources]) => {
-      // console.log(resources.row);
-      console.log("comment :", comments);
       const templateVars = {
         resources: resources,
         comments: comments, // You can pass comments to the template here
@@ -196,11 +193,10 @@ router.post("/like/:resource_id", (req, res) => {
 router.post("/comment/:resource_id", (req, res) => {
   const resource_id = req.params.resource_id;
   const user_id = 1;
-  console.log("reg ", req.body);
+
   return resourceQueries
     .addComments(user_id, resource_id, req.body.comment)
     .then((comments) => {
-      console.log(comments);
       // res.render("single_page", templateVars);
 
       // return comments;

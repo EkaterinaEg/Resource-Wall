@@ -72,7 +72,6 @@ const getResourcesbyUser = (user_id) => {
       GROUP BY resources.id, users.id;`
     )
     .then((data) => {
-      console.log(data.rows);
       return data.rows;
     })
     .catch((err) => {

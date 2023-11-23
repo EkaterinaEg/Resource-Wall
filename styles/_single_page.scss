@@ -41,6 +41,9 @@ textarea {
 .comments__list {
   margin-top: 40px;
   padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
 }
 .comments__list__item {
   display: flex;
@@ -48,4 +51,8 @@ textarea {
 }
 .comments__list__title {
   text-align: start;
+}
+.comments__list__item_author {
+  font-weight: bold;
+  margin-right: 15px;
 }
