@@ -9,6 +9,7 @@ const express = require("express");
 const router = express.Router();
 const db = require("../db/connection");
 const resourceQueries = require("../db/queries/resources");
+const userQueries = require("../db/queries/users");
 
 const cookieSession = require("cookie-session");
 router.use(
@@ -43,13 +44,11 @@ router.get("/", (req, res) => {
 
 // GET search page from nav menu
 router.get("/search", (req, res) => {
-
   res.render("search_page");
 });
 
 // Post request for search page
 router.post("/search", (req, res) => {
-
   resourceQueries
     .getResourcesbyCategoryRating(req.body)
     .then((resources) => {
@@ -69,14 +68,25 @@ router.get("/my_resources", (req, res) => {
   if (!user_id) {
     return res.send({ error: "Sorry you must be logged in to add a resource" });
   }
-  
-  resourceQueries
-    .getResourcesbyUser(user_id)
-    .then((resources) => {
+
+  Promise.all([
+    userQueries.getUserById(user_id),
+    resourceQueries.getResourcesbyUser(user_id),
+  ])
+    .then(([users, resources]) => {
       const templateVars = {
-        resources,
-        user_id: user_id,
+        resources: resources,
+        users: users,
+        user_id: users.id,
       };
+
+      // resourceQueries
+      //   .getResourcesbyUser(user_id)
+      //   .then((resources) => {
+      //     const templateVars = {
+      //       resources,
+      //       user_id: user_id,
+      //     };
 
       res.render("my_resources", templateVars);
     })
@@ -183,13 +193,10 @@ router.post("/comment/:resource_id", (req, res) => {
   if (!user_id) {
     return res.send({ error: "Sorry you must be logged in to add a resource" });
   }
-  
+
   return resourceQueries
     .addComments(user_id, resource_id, req.body.comment)
     .then((comments) => {
-      // res.render("single_page", templateVars);
-
-      // return comments;
       res.redirect(`/resources/${resource_id}`);
     })
     .catch((err) => {
@@ -197,13 +204,13 @@ router.post("/comment/:resource_id", (req, res) => {
     });
 });
 
-router.get('/login/:id', (req ,res) => {
-  req.session.user_id = req.params.id
-  res.redirect('/')
+router.get("/login/:id", (req, res) => {
+  req.session.user_id = req.params.id;
+  res.redirect("/");
 });
 
 // GET /new
-router.get('/new', (req, res) => {
+router.get("/new", (req, res) => {
   const user_id = req.session.user_id;
   if (!user_id) {
     return res.send({ error: "Sorry you must be logged in to add a resource" });
@@ -211,20 +218,19 @@ router.get('/new', (req, res) => {
   res.render("new_resource");
 });
 
-
 // POST /new
 router.post("/new", (req, res) => {
   const user_id = req.session.user_id;
   if (!user_id) {
     return res.send({ error: "Sorry you must be logged in to add a resource" });
   }
-console.log(req.body)
-console.log('1:', user_id)
+  console.log(req.body);
+  console.log("1:", user_id);
   const newResource = req.body;
-    resourceQueries
+  resourceQueries
     .addResource(newResource, user_id)
     .then(() => {
-      res.redirect('/search');
+      res.redirect("/search");
     })
     .catch((e) => {
       console.error(e);

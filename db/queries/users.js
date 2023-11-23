@@ -10,7 +10,6 @@ const getUserById = (user_id) => {
   return db
     .query(`SELECT * FROM users WHERE users.id = ${user_id};`)
     .then((data) => {
-      console.log("query:", data.rows[0]);
       return data.rows[0];
     });
 };

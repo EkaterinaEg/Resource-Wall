@@ -12,11 +12,9 @@ const bcrypt = require("bcryptjs");
 
 router.get("/users/:user_id", (req, res) => {
   const user_id = req.params.user_id;
-  console.log(user_id);
   userQueries
     .getUserById(user_id)
     .then((users) => {
-      console.log("users", users);
       const templateVars = {
         users: users,
         user_id: users.id,
