@@ -38,22 +38,16 @@ app.use(express.static("public"));
 //
 
 const resourceRoutes = require("./routes/resources.js");
-<<<<<<< HEAD
 const userRoutes = require("./routes/users.js");
 
-=======
 // const newResourceRoutes = require("./routes/newresource-route.js");
 // const myResourcesRoutes = require("./routes/my_resources.js");
->>>>>>> feature/newresource
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
 // Note: Endpoints that return data (eg. JSON) usually start with `/api`
 app.use("/", resourceRoutes);
-<<<<<<< HEAD
 app.use("/", userRoutes);
-=======
 // app.use("/new", newResourceRoutes);
->>>>>>> feature/newresource
 // app.use("/my_resources", resourceRoutes);
 // app.use("/search", resourceRoutes);
 

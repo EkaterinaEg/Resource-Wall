@@ -246,7 +246,6 @@ module.exports = {
   getResourcesbyCategory,
   getResourcesbyCategoryRating,
   getResourcesbyUser,
-<<<<<<< HEAD
   getResourcebyResourceId,
   updateResourceTable,
   updateRating,
@@ -255,9 +254,7 @@ module.exports = {
   addCategory,
   addLike,
   getCommentsByResourseId,
-=======
   getUserResources,
   addResource,
   // getCategoriesbyResourse,
->>>>>>> feature/newresource
 };
