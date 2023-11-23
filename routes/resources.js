@@ -1,10 +1,3 @@
-/*
- * All routes for resources Data are defined here
- * Since this file is loaded in server.js into api/widgets,
- *   these routes are mounted onto /api/widgets
- * See: https://expressjs.com/en/guide/using-middleware.html#middleware.router
- */
-
 const express = require("express");
 const router = express.Router();
 const db = require("../db/connection");
@@ -18,6 +11,7 @@ router.use(
     keys: ["fasdklfhaklsdhfklas"],
   })
 );
+
 //Middleware
 router.use((req, res, next) => {
   // Assuming `req.session.user_id` holds the user's session ID
@@ -62,6 +56,7 @@ router.post("/search", (req, res) => {
     });
 });
 
+// GET to my resources
 router.get("/my_resources", (req, res) => {
   const user_id = req.session.user_id;
 
@@ -79,14 +74,6 @@ router.get("/my_resources", (req, res) => {
         users: users,
         user_id: users.id,
       };
-
-      // resourceQueries
-      //   .getResourcesbyUser(user_id)
-      //   .then((resources) => {
-      //     const templateVars = {
-      //       resources,
-      //       user_id: user_id,
-      //     };
 
       res.render("my_resources", templateVars);
     })
@@ -130,17 +117,11 @@ router.post("/rating/:resource_id", (req, res) => {
     return res.send({ error: "Sorry you must be logged in to add a resource" });
   }
 
-  // console.log("resourceID ", resource_id);
   const rating = req.body.rating;
-  // console.log("req.body: ", req.body);
 
   resourceQueries
     .updateRating(user_id, resource_id, rating)
     .then((resources) => {
-      // const templateVars = {
-      //   resources: resources,
-      //   resource_id: resource_id,
-      // };
       res.redirect(`/`);
     })
     .catch((err) => {
@@ -173,9 +154,11 @@ router.post("/category/:resource_id", (req, res) => {
 router.post("/like/:resource_id", (req, res) => {
   const resource_id = req.params.resource_id;
   const user_id = req.session.user_id;
+
   if (!user_id) {
     return res.send({ error: "Sorry you must be logged in to add a resource" });
   }
+
   return resourceQueries
     .addLike(user_id, resource_id)
     .then((data) => {
