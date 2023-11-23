@@ -48,7 +48,7 @@
             || 0 %> from 5
           </h3>
           <form
-            action="/resources/<%= resource_id %>"
+            action="/rating/<%= resource_id %>"
             method="POST"
             class="form_raiting"
           >
@@ -68,13 +68,9 @@
         </li>
         <li class="list__item item__action action_like">
           <h3><i class="fa-solid fa-thumbs-up"></i>Like</h3>
-          <form action="/resources/<%= resource_id %>" method="POST">
+          <form action="/like/<%= resource_id %>" method="POST">
             <label>Like me</label>
-            <button
-              type="submit"
-              class="comment__button button button_dark"
-              action="/like/<%= resource_id %>"
-            >
+            <button type="submit" class="comment__button button button_dark">
               Like
             </button>
           </form>
@@ -85,7 +81,7 @@
             <i class="fa-solid fa-magnifying-glass"></i>Key words: <%=
             resources.category %>
           </h3>
-          <form action="/resources/<%= resource_id %>" method="POST">
+          <form action="/category/<%= resource_id %>" method="POST">
             <label for="category">Add key words</label>
             <select name="category" id="category">
               <option value="">--Please choose--</option>
@@ -113,8 +109,8 @@
           <div class="action_comment__list">
             <h3><i class="fa-solid fa-comment"></i>Comments</h3>
             <form
-              method="/POST"
-              action="/resources/<%= resource_id %>"
+              method="POST"
+              action="/comment/<%= resource_id %>"
               class="form_comment"
             >
               <textarea
@@ -124,26 +120,24 @@
                 rows="2"
                 placeholder="What do you think?"
               ></textarea>
-              <button
-                type="submit"
-                class="rate__button button button_dark"
-                action="/comments/<%= resource_id %>"
-              >
+              <button type="submit" class="rate__button button button_dark">
                 Add comment
               </button>
             </form>
           </div>
           <ul class="comments__list">
             <h4 class="comments__list__title">Comments:</h4>
+            <% for (const comment of comments) { %>
             <li class="comments__list__item">
               <span class="comments__list__item_author"
-                ><i class="fa-regular fa-face-smile"></i><%=
-                resources.comment_creator_name %> said:</span
+                ><i class="fa-regular fa-face-smile"></i> <%=
+                comment.comment_creator_name %> said:</span
               >
               <span class="comments__list__item_text"
-                ><%= resources.comment %></span
+                ><%= comment.comment %></span
               >
             </li>
+            <% } %>
           </ul>
         </li>
       </ul>
