@@ -6,10 +6,10 @@ Allow learners to save learning resources like tutorials, blogs and videos in a 
 
 ## Final Product
 
-!["Screenshot of Home page"]()
-!["Screenshot of My resources"]()
-!["Screenshot of Resource page"]()
-!["Screenshot of Add new resource"]()
+!["Screenshot of Home page"](https://github.com/EkaterinaEg/Resource-Wall/blob/master/docs/Home_page.png)
+!["Screenshot of My resources"](https://github.com/EkaterinaEg/Resource-Wall/blob/master/docs/My_resources.png)
+!["Screenshot of Resource page"](https://github.com/EkaterinaEg/Resource-Wall/blob/master/docs/Single_resource.png)
+!["Screenshot of Add new resource"](https://github.com/EkaterinaEg/Resource-Wall/blob/master/docs/Add_resource.png)
 
 ## Requirements:
 

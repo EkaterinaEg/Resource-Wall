@@ -122,7 +122,7 @@ router.post("/rating/:resource_id", (req, res) => {
   resourceQueries
     .updateRating(user_id, resource_id, rating)
     .then((resources) => {
-      res.redirect(`/`);
+      res.redirect(`/resources/${resource_id}`);
     })
     .catch((err) => {
       res.status(500).send({ error: err.message });
@@ -143,7 +143,7 @@ router.post("/category/:resource_id", (req, res) => {
       return resourceQueries.addCategory(resource_id, category_id);
     })
     .then((resources) => {
-      res.redirect(`/`);
+      res.redirect(`/resources/${resource_id}`);
     })
     .catch((err) => {
       res.status(500).send({ error: err.message });
@@ -213,7 +213,7 @@ router.post("/new", (req, res) => {
   resourceQueries
     .addResource(newResource, user_id)
     .then(() => {
-      res.redirect("/search");
+      res.redirect("/my_resources");
     })
     .catch((e) => {
       console.error(e);
