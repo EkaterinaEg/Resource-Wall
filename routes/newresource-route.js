@@ -1,4 +1,4 @@
-const express = require ('express');
+const express = require("express");
 const router = express.Router();
 const resourceQueries = require("../db/queries/resources");
 const cookieSession = require("cookie-session");
@@ -15,10 +15,8 @@ router.use((req, res, next) => {
   next(); // Continue to the next middleware or route handler
 });
 
-
 // GET /new
-router.get('/', (req, res) => {
-  console.log(req.session.user_id)
+router.get("/", (req, res) => {
   const user_id1 = res.locals.userId;
   const user_id = req.session.user_id;
   if (!user_id1) {
@@ -27,7 +25,6 @@ router.get('/', (req, res) => {
   res.render("new_resource");
 });
 
-
 // POST /new
 router.post("/", (req, res) => {
   const user_id1 = res.locals.userId;
@@ -35,21 +32,15 @@ router.post("/", (req, res) => {
   if (!user_id1) {
     return res.send({ error: "Sorry you must be logged in to add a resource" });
   }
-console.log(req.body)
-console.log('1:', user_id)
-console.log('2:', user_id1)
   const newResource = req.body;
-    resourceQueries
+  resourceQueries
     .addResource(newResource, user_id1)
     .then((response) => {
-      console.log(response.rows)
-      res.redirect('/search');
+      res.redirect("/search");
     })
     .catch((e) => {
-      console.error(e);
       res.send(e);
     });
 });
-
 
 module.exports = router;

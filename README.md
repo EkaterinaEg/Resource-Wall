@@ -59,3 +59,7 @@ Allow learners to save learning resources like tutorials, blogs and videos in a 
 - Note: nodemon is used, so you should not have to restart your server
 
 8. Visit `http://localhost:8080/`
+
+## Login
+
+- To login go to http://localhost:8080/login/1 (select user from 1 to 5)

@@ -206,8 +206,6 @@ const addResource = function (resource, user_id) {
   }
   let query = `INSERT INTO resources (user_id, link, title, description)
   VALUES ($1, $2, $3, $4);`;
-  console.log(query);
-  console.log(queryParams);
   return db
     .query(query, queryParams)
     .then(() => {

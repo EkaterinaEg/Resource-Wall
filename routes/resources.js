@@ -207,8 +207,6 @@ router.post("/new", (req, res) => {
   if (!user_id) {
     return res.send({ error: "Sorry you must be logged in to add a resource" });
   }
-  console.log(req.body);
-  console.log("1:", user_id);
   const newResource = req.body;
   resourceQueries
     .addResource(newResource, user_id)
@@ -216,7 +214,6 @@ router.post("/new", (req, res) => {
       res.redirect("/my_resources");
     })
     .catch((e) => {
-      console.error(e);
       res.send(e);
     });
 });
