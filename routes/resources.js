@@ -205,7 +205,7 @@ router.post("/comment/:resource_id", (req, res) => {
 
 router.get("/login/:id", (req, res) => {
   req.session.user_id = req.params.id;
-  res.redirect("/");
+  res.redirect("/search");
 });
 
 // GET /new
