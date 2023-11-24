@@ -69,7 +69,7 @@ router.get("/my_resources", (req, res) => {
   if (!user_id) {
     return res.send({ error: "Sorry you must be logged in to add a resource" });
   }
-  
+
   resourceQueries
     .getResourcesbyUser(user_id)
     .then((resources) => {
@@ -183,7 +183,7 @@ router.post("/comment/:resource_id", (req, res) => {
   if (!user_id) {
     return res.send({ error: "Sorry you must be logged in to add a resource" });
   }
-  
+
   return resourceQueries
     .addComments(user_id, resource_id, req.body.comment)
     .then((comments) => {
@@ -230,6 +230,17 @@ console.log('1:', user_id)
       console.error(e);
       res.send(e);
     });
+
+
+});
+
+router.get('/login', (req ,res) => {
+  req.session.user_id = req.params.id
+  res.redirect('/')
+});
+router.get('/register', (req ,res) => {
+  req.session.user_id = req.params.id
+  res.redirect('/')
 });
 
 module.exports = router;
