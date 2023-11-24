@@ -73,12 +73,19 @@ router.get("/my_resources", (req, res) => {
   resourceQueries
     .getResourcesbyUser(user_id)
     .then((resources) => {
-      const templateVars = {
-        resources,
-        user_id: user_id,
-      };
-
-      res.render("my_resources", templateVars);
+      if(resources.length === 0){
+        return res.send({error: "Sorry you must be own or like resources first"})
+      }
+      resourceQueries.getUserById(user_id)
+      .then((userInfo) => {
+        const templateVars = {
+          resources,
+          userInfo,
+          user_id,
+        };
+        console.log(templateVars)
+        res.render("my_resources", templateVars);
+      })
     })
     .catch((err) => {
       res.status(500).send({ error: err.message });
@@ -90,7 +97,7 @@ router.get("/resources/:resource_id", (req, res) => {
   const resource_id = req.params.resource_id;
   const user_id = req.session.user_id;
   if (!user_id) {
-    return res.send({ error: "Sorry you must be logged in to add a resource" });
+    return res.send({ error: "Sorry you must be logged in to view a resource" });
   }
 
   Promise.all([

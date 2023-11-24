@@ -241,6 +241,22 @@ const addResource = function(resource, user_id) {
     });
 }
 
+const getUserById = function(user_id) {
+  let queryParams = [user_id];
+  let query = 
+  `SELECT * FROM users WHERE id = $1;`
+
+  return db
+  .query(query,queryParams)
+  .then((res)=> {
+  console.log("found user");
+  return res.rows
+  })
+  .catch((err) => {
+    console.log(err.message)
+  })
+}
+
 module.exports = {
   getResources,
   getResourcesbyCategory,
@@ -255,5 +271,6 @@ module.exports = {
   addLike,
   getCommentsByResourseId,
   addResource,
+  getUserById,
   // getCategoriesbyResourse,
 };
