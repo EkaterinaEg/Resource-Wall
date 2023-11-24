@@ -21,11 +21,15 @@ router.use((req, res, next) => {
 
 // GET /resources Home page
 router.get("/", (req, res) => {
-  resourceQueries
-    .getResources()
-    .then((resources) => {
+  const user_id = req.session.user_id;
+  Promise.all([
+    userQueries.getUserById(user_id),
+    resourceQueries.getResources(),
+  ])
+    .then(([user,resources]) => {
       const templateVars = {
         resources,
+        user
       };
 
       res.render("resources", templateVars);
@@ -38,16 +42,26 @@ router.get("/", (req, res) => {
 
 // GET search page from nav menu
 router.get("/search", (req, res) => {
-  res.render("search_page");
+  const user_id = req.session.user_id;
+  userQueries.getUserById(user_id)
+  .then((user) => {
+    const templateVars = { user }
+    res.render("search_page",templateVars);
+  })
 });
 
 // Post request for search page
 router.post("/search", (req, res) => {
-  resourceQueries
-    .getResourcesbyCategoryRating(req.body)
-    .then((resources) => {
-      const templateVars = { resources };
-
+  const user_id = req.session.user_id;
+  Promise.all([
+    resourceQueries.getResourcesbyCategoryRating(req.body),
+    userQueries.getUserById(user_id),
+  ])
+    .then(([resources, user]) => {
+      const templateVars = { 
+        resources, 
+        user 
+      };
       res.render("resources", templateVars);
     })
 
@@ -68,11 +82,11 @@ router.get("/my_resources", (req, res) => {
     userQueries.getUserById(user_id),
     resourceQueries.getResourcesbyUser(user_id),
   ])
-    .then(([users, resources]) => {
+    .then(([user, resources]) => {
       const templateVars = {
-        resources: resources,
-        users: users,
-        user_id: users.id,
+        resources,
+        user,
+        user_id
       };
 
       res.render("my_resources", templateVars);
@@ -93,12 +107,14 @@ router.get("/resources/:resource_id", (req, res) => {
   Promise.all([
     resourceQueries.getCommentsByResourseId(resource_id),
     resourceQueries.getResourcebyResourceId(resource_id),
+    userQueries.getUserById(user_id),
   ])
-    .then(([comments, resources]) => {
+    .then(([comments, resources, user]) => {
       const templateVars = {
         resources: resources,
         comments: comments,
         resource_id: resource_id,
+        user
       };
 
       res.render("single_page", templateVars);
@@ -198,7 +214,11 @@ router.get("/new", (req, res) => {
   if (!user_id) {
     return res.send({ error: "Sorry you must be logged in to add a resource" });
   }
-  res.render("new_resource");
+  userQueries.getUserById(user_id)
+  .then((user) => {
+    const templateVars = { user }
+    res.render("new_resource", templateVars);
+  })
 });
 
 // POST /new
@@ -207,18 +227,26 @@ router.post("/new", (req, res) => {
   if (!user_id) {
     return res.send({ error: "Sorry you must be logged in to add a resource" });
   }
-  console.log(req.body);
-  console.log("1:", user_id);
+
   const newResource = req.body;
   resourceQueries
     .addResource(newResource, user_id)
     .then(() => {
-      res.redirect("/search");
+      res.redirect("/my_resources");
     })
     .catch((e) => {
       console.error(e);
       res.send(e);
     });
 });
+
+// // clears cookie when you logout
+// router.post("/logout", (req, res) => {
+  
+//   req.session = null;
+  
+//   res.redirect("/")
+// });
+
 
 module.exports = router;

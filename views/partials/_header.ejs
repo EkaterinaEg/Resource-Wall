@@ -11,6 +11,22 @@
       <a class="menu__item add_res" href="/my_resources">My resources</a>
       <a class="menu__item add_res" href="/new">Add resource</a>
     </div>
-    <div class="navbar__form-container"></div>
+    <%if (user) {%>
+    <div class="navbar__form-container">
+      <form class="nav__form" method="POST" action="/logout">
+        <div class="nav__form__wrapper">
+          <p class="header__login">Logged in as: <%= user.email %></p>
+          <button class="nav__form__button button button_light" type="submit">
+            Logout
+          </button>
+        </div>
+      </form>
+      <% } else { %>
+      <div class="login-register__links">
+        <a href="/login" class="link_login">Login</a>
+        <a href="/register" class="link_register">Register</a>
+      </div>
+    </div>
+    <% } %>
   </nav>
 </header>

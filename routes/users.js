@@ -14,10 +14,10 @@ router.get("/users/:user_id", (req, res) => {
   const user_id = req.params.user_id;
   userQueries
     .getUserById(user_id)
-    .then((users) => {
+    .then((user) => {
       const templateVars = {
-        users: users,
-        user_id: users.id,
+        user,
+        user_id: user.id,
       };
 
       res.render("users", templateVars);
